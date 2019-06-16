@@ -7,6 +7,10 @@ import Accounting from './pages/Accounting';
 import Orders from './pages/Orders';
 import Catalog from './pages/Catalog';
 import Cash from './pages/Cash';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faPlus);
 
 export default class App extends Component {
   static displayName = App.name;
