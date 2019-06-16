@@ -32,6 +32,18 @@ class Cash extends Component {
 
   multiply = (number, multiplier) => (number * multiplier).toFixed(2);
 
+  total = (checks, papers, coins) => {
+    let totalPaper = 0;
+    for (const paper of papers) {
+      totalPaper += paper.count * paper.value;
+    }
+    let totalCoins = 0;
+    for (const coin of coins) {
+      totalCoins += coin.count * coin.value;
+    }
+    return checks.amount + totalPaper + totalCoins;
+  };
+
   handleCheckCountChange = e => {
     const checks = this.state.checks;
     checks.count = e.target.value;
@@ -174,6 +186,20 @@ class Cash extends Component {
                   </FormGroup>
                 );
               })}
+              <h5>Total</h5>
+              <hr />
+              <FormGroup row className="justify-content-center text-right">
+                <Label xs="auto">
+                  <NumberFormat
+                    value={this.total(checks, paper, coins)}
+                    displayType={'text'}
+                    prefix={'$'}
+                    thousandSeparator
+                    decimalScale={2}
+                    fixedDecimalScale
+                  />
+                </Label>
+              </FormGroup>
             </Form>
           </Col>
         </Row>
