@@ -37,7 +37,9 @@ class NewProductFormModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const form = this.state.form;
-    console.log({ form });
+    if (!form.shortName) {
+      form.shortName = form.name;
+    }
     try {
       api.products.create(form);
       this.props.toggle();

@@ -1,0 +1,13 @@
+.lh-0 {
+  line-height: 0;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.fa-stack.fa-1x,
+.fa-stack.fa-1x > .fa-stack-1x {
+  width: 1em;
+  height: 1em;
+}

@@ -8,9 +8,12 @@ import Orders from './pages/Orders';
 import Catalog from './pages/Catalog';
 import Cash from './pages/Cash';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faAngleRight, faExchangeAlt, faSlash } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPlus);
+library.add(faAngleRight);
+library.add(faExchangeAlt);
+library.add(faSlash);
 
 export default class App extends Component {
   static displayName = App.name;
