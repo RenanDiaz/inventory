@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button, Container } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewProductFormModal from '../components/NewProductFormModal';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import NumberFormat from 'react-number-format';
+import classnames from 'classnames';
 import api from '../api';
 import './styles/Catalog.css';
 
 class Catalog extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       loading: true,
       error: null,
@@ -27,6 +29,9 @@ class Catalog extends Component {
     this.setState({ loading: true, error: null });
     try {
       const products = await api.products.list();
+      for (const product of products) {
+        product.isSelected = false;
+      }
       this.setState({ loading: false, products });
     } catch (error) {
       this.setState({ loading: false, error: error });
@@ -43,6 +48,15 @@ class Catalog extends Component {
     });
   };
 
+  select = index => {
+    const products = this.state.products;
+    for (const product of products) {
+      product.isSelected = false;
+    }
+    products[index].isSelected = true;
+    this.setState({ products });
+  };
+
   render() {
     if (this.state.loading && !this.state.data) {
       return <PageLoading />;
@@ -53,22 +67,30 @@ class Catalog extends Component {
     }
     return (
       <div>
-        <Row className="pb-2 border-bottom">
-          <Col>
-            <h4>Catálogo de productos</h4>
-          </Col>
-          <Col xs="auto">
-            <Button color="primary" onClick={this.toggle}>
-              <FontAwesomeIcon icon="plus" />
-            </Button>
-            <NewProductFormModal isOpen={this.state.modal} toggle={this.toggle} />
-          </Col>
-        </Row>
+        <div className="fixed-top bg-white page-title">
+          <Container fluid>
+            <Row className="py-2 border-bottom align-items-center">
+              <Col>
+                <h4 className="mb-0">Catálogo de productos</h4>
+              </Col>
+              <Col xs="auto">
+                <Button color="primary" onClick={this.toggle}>
+                  <FontAwesomeIcon icon="plus" />
+                </Button>
+                <NewProductFormModal isOpen={this.state.modal} toggle={this.toggle} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
         <Row className="d-md-none mobile-catalog-table-container">
           <Col>
-            {this.state.products.map(value => {
+            {this.state.products.map((value, index) => {
               return (
-                <Row key={value.id} className="align-items-center border-bottom">
+                <Row
+                  key={value.id}
+                  className={classnames('align-items-center border-bottom', { active: value.isSelected })}
+                  onClick={() => this.select(index)}
+                >
                   <Col xs={2} className="text-center font-weight-bold">
                     {value.code}
                   </Col>
@@ -140,16 +162,20 @@ class Catalog extends Component {
         </Row>
         <Row className="d-none d-md-block">
           <Col>
-            <Row className="text-center font-weight-bold border-bottom py-2">
-              <Col xs={1}>Código</Col>
-              <Col xs={3}>Nombre</Col>
-              <Col xs={2}>Nombre corto</Col>
-              <Col xs={2}>Presentación</Col>
-              <Col xs={1}>Costo</Col>
-              <Col xs={1}>Precio</Col>
-              <Col xs={1}>Ganancia</Col>
-              <Col xs={1}>Retornable</Col>
-            </Row>
+            <div className="fixed-top bg-white products-table-head">
+              <Container>
+                <Row className="text-center font-weight-bold border-bottom py-2">
+                  <Col xs={1}>Código</Col>
+                  <Col xs={3}>Nombre</Col>
+                  <Col xs={2}>Nombre corto</Col>
+                  <Col xs={2}>Presentación</Col>
+                  <Col xs={1}>Costo</Col>
+                  <Col xs={1}>Precio</Col>
+                  <Col xs={1}>Ganancia</Col>
+                  <Col xs={1}>Retornable</Col>
+                </Row>
+              </Container>
+            </div>
             <Row className="desktop-catalog-table-container">
               <Col>
                 {this.state.products.map(value => {

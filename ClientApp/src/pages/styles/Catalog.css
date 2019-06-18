@@ -13,11 +13,34 @@
 }
 
 .mobile-catalog-table-container {
-  max-height: calc(100vh - 106px);
-  overflow-y: auto;
+  margin-top: calc(50.25px + 48.5px);
 }
 
 .desktop-catalog-table-container {
-  max-height: calc(100vh - 161px);
-  overflow-y: auto;
+  margin-top: calc(57px + 55px + 41px);
+}
+
+.page-title {
+  margin-top: 50.25px;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    margin-top: 57px;
+  }
+}
+
+.products-table-head {
+  margin-top: calc(57px + 55px);
+  z-index: 1000;
+}
+
+.row.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.row.active .text-muted {
+  color: white !important;
 }
