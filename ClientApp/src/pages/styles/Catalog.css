@@ -11,3 +11,13 @@
   width: 1em;
   height: 1em;
 }
+
+.mobile-catalog-table-container {
+  max-height: calc(100vh - 106px);
+  overflow-y: auto;
+}
+
+.desktop-catalog-table-container {
+  max-height: calc(100vh - 161px);
+  overflow-y: auto;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Table } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewProductFormModal from '../components/NewProductFormModal';
 import PageLoading from '../components/PageLoading';
@@ -64,17 +64,17 @@ class Catalog extends Component {
             <NewProductFormModal isOpen={this.state.modal} toggle={this.toggle} />
           </Col>
         </Row>
-        <Row className="d-md-none">
+        <Row className="d-md-none mobile-catalog-table-container">
           <Col>
             {this.state.products.map(value => {
               return (
                 <Row key={value.id} className="align-items-center border-bottom">
-                  <Col xs={2} className="text-center">
+                  <Col xs={2} className="text-center font-weight-bold">
                     {value.code}
                   </Col>
                   <Col>
                     <Row>
-                      <Col>{value.name}</Col>
+                      <Col className="text-truncate">{value.name}</Col>
                     </Row>
                     <Row>
                       <Col>
@@ -140,28 +140,38 @@ class Catalog extends Component {
         </Row>
         <Row className="d-none d-md-block">
           <Col>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Código</th>
-                  <th>Nombre</th>
-                  <th>Nombre corto</th>
-                  <th>Presentación</th>
-                  <th>Costo</th>
-                  <th>Precio</th>
-                  <th>Ganancia</th>
-                  <th>Retornable</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Row className="text-center font-weight-bold border-bottom py-2">
+              <Col xs={1}>Código</Col>
+              <Col xs={3}>Nombre</Col>
+              <Col xs={2}>Nombre corto</Col>
+              <Col xs={2}>Presentación</Col>
+              <Col xs={1}>Costo</Col>
+              <Col xs={1}>Precio</Col>
+              <Col xs={1}>Ganancia</Col>
+              <Col xs={1}>Retornable</Col>
+            </Row>
+            <Row className="desktop-catalog-table-container">
+              <Col>
                 {this.state.products.map(value => {
                   return (
-                    <tr key={value.id}>
-                      <th>{value.code}</th>
-                      <td>{value.name}</td>
-                      <td>{value.shortName}</td>
-                      <td>{value.presentation}</td>
-                      <td className="text-right">
+                    <Row key={value.id} className="border-top py-2">
+                      <Col xs={1} className="font-weight-bold">
+                        {value.code}
+                      </Col>
+                      <Col xs={3}>{value.name}</Col>
+                      <Col xs={2}>{value.shortName}</Col>
+                      <Col xs={2}>{value.presentation}</Col>
+                      <Col xs={1} className="text-right">
+                        <NumberFormat
+                          value={value.cost}
+                          displayType={'text'}
+                          prefix={'$'}
+                          thousandSeparator
+                          decimalScale={2}
+                          fixedDecimalScale
+                        />
+                      </Col>
+                      <Col xs={1} className="text-right">
                         <NumberFormat
                           value={value.price}
                           displayType={'text'}
@@ -170,18 +180,8 @@ class Catalog extends Component {
                           decimalScale={2}
                           fixedDecimalScale
                         />
-                      </td>
-                      <td className="text-right">
-                        <NumberFormat
-                          value={value.price}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                        />
-                      </td>
-                      <td className="text-right">
+                      </Col>
+                      <Col xs={1} className="text-right">
                         <NumberFormat
                           value={value.price - value.cost}
                           displayType={'text'}
@@ -190,13 +190,13 @@ class Catalog extends Component {
                           decimalScale={2}
                           fixedDecimalScale
                         />
-                      </td>
-                      <td>{value.isReturnable ? 'Sí' : 'No'}</td>
-                    </tr>
+                      </Col>
+                      <Col xs={1}>{value.isReturnable ? 'Sí' : 'No'}</Col>
+                    </Row>
                   );
                 })}
-              </tbody>
-            </Table>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>
