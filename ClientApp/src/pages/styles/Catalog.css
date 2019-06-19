@@ -12,11 +12,11 @@
   height: 1em;
 }
 
-.mobile-catalog-table-container {
+.mobile-table-container {
   margin-top: calc(50.25px + 48.5px);
 }
 
-.desktop-catalog-table-container {
+.desktop-table-container {
   margin-top: calc(57px + 55px + 41px);
 }
 

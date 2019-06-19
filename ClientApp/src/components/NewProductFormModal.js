@@ -34,14 +34,22 @@ class NewProductFormModal extends Component {
     };
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const form = this.state.form;
     if (!form.shortName) {
       form.shortName = form.name;
     }
     try {
-      api.products.create(form);
+      await api.products.create(form);
+      form.code = '';
+      form.name = '';
+      form.shortName = '';
+      form.presentation = '';
+      form.returnable = false;
+      form.cost = 0;
+      form.cost = 0;
+      this.setState({ form });
       this.props.toggle();
     } catch (error) {
       this.setState({ error });
@@ -59,13 +67,6 @@ class NewProductFormModal extends Component {
     this.setState({ form });
   };
 
-  gain = () => {
-    const form = this.state.form;
-    const cost = form.cost;
-    const price = form.price;
-    return price - cost;
-  };
-
   render() {
     const form = this.state.form;
     return (
@@ -78,7 +79,15 @@ class NewProductFormModal extends Component {
                 Código:
               </Label>
               <Col xs={4}>
-                <Input type="" id="code" name="code" value={form.code} onChange={this.handleFormChange} autoFocus />
+                <Input
+                  type="text"
+                  pattern="\d*"
+                  id="code"
+                  name="code"
+                  value={form.code}
+                  onChange={this.handleFormChange}
+                  autoFocus
+                />
               </Col>
             </FormGroup>
             <FormGroup row className="text-right">
@@ -105,7 +114,7 @@ class NewProductFormModal extends Component {
               </Col>
             </FormGroup>
             <FormGroup row className="text-right">
-              <Label for="name" xs={5} sm={4}>
+              <Label for="presentation" xs={5} sm={4}>
                 Presentación:
               </Label>
               <Col>
@@ -160,7 +169,7 @@ class NewProductFormModal extends Component {
               </Label>
               <Label xs="auto">
                 <NumberFormat
-                  value={this.gain()}
+                  value={form.price - form.cost}
                   displayType={'text'}
                   prefix={'$'}
                   thousandSeparator

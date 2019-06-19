@@ -42,6 +42,31 @@ const api = {
         method: 'DELETE'
       });
     }
+  },
+  categories: {
+    list() {
+      return callApi('/categories');
+    },
+    create(category) {
+      return callApi(`/categories`, {
+        method: 'POST',
+        body: JSON.stringify(category)
+      });
+    },
+    read(id) {
+      return callApi(`/categories/${id}`);
+    },
+    update(id, updates) {
+      return callApi(`/categories/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates)
+      });
+    },
+    remove(id) {
+      return callApi(`/categories/${id}`, {
+        method: 'DELETE'
+      });
+    }
   }
 };
 

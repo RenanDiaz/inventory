@@ -91,6 +91,14 @@ export class NavMenu extends Component {
                     >
                       Catálogo
                     </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to="/products/categories"
+                      active={window.location.pathname === '/products/categories'}
+                      onClick={this.forceCollapseNavbar}
+                    >
+                      Presentaciones
+                    </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
                 <Dropdown

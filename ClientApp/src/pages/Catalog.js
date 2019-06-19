@@ -58,7 +58,7 @@ class Catalog extends Component {
   };
 
   render() {
-    if (this.state.loading && !this.state.data) {
+    if (this.state.loading && !this.state.products) {
       return <PageLoading />;
     }
 
@@ -82,7 +82,7 @@ class Catalog extends Component {
             </Row>
           </Container>
         </div>
-        <Row className="d-md-none mobile-catalog-table-container">
+        <Row className="d-md-none mobile-table-container">
           <Col>
             {this.state.products.map((value, index) => {
               return (
@@ -176,7 +176,7 @@ class Catalog extends Component {
                 </Row>
               </Container>
             </div>
-            <Row className="desktop-catalog-table-container">
+            <Row className="desktop-table-container">
               <Col>
                 {this.state.products.map(value => {
                   return (

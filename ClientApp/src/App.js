@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import Accounting from './pages/Accounting';
 import Orders from './pages/Orders';
 import Catalog from './pages/Catalog';
+import Categories from './pages/Categories';
 import Cash from './pages/Cash';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faAngleRight, faExchangeAlt, faSlash } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +25,7 @@ export default class App extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/catalog" component={Catalog} />
+        <Route exact path="/products/categories" component={Categories} />
         <Route exact path="/accounting" component={Accounting} />
         <Route exact path="/accounting/cash" component={Cash} />
         <Route exact path="/orders" component={Orders} />
