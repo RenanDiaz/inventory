@@ -68,7 +68,7 @@ class Catalog extends Component {
     return (
       <div>
         <div className="fixed-top bg-white page-title">
-          <Container fluid>
+          <Container>
             <Row className="py-2 border-bottom align-items-center">
               <Col>
                 <h4 className="mb-0">Catálogo de productos</h4>
@@ -100,7 +100,7 @@ class Catalog extends Component {
                     </Row>
                     <Row>
                       <Col>
-                        <span className="text-muted small">{value.presentation}</span>
+                        <span className="text-muted small">{value.category.brief}</span>
                       </Col>
                     </Row>
                   </Col>
@@ -186,7 +186,7 @@ class Catalog extends Component {
                       </Col>
                       <Col xs={3}>{value.name}</Col>
                       <Col xs={2}>{value.shortName}</Col>
-                      <Col xs={2}>{value.presentation}</Col>
+                      <Col xs={2}>{value.category.brief}</Col>
                       <Col xs={1} className="text-right">
                         <NumberFormat
                           value={value.cost}

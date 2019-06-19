@@ -64,7 +64,7 @@ class Categories extends Component {
     return (
       <div>
         <div className="fixed-top bg-white page-title">
-          <Container fluid>
+          <Container>
             <Row className="py-2 border-bottom align-items-center">
               <Col>
                 <h4 className="mb-0">Presentaciones</h4>

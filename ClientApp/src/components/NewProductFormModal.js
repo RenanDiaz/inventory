@@ -26,13 +26,31 @@ class NewProductFormModal extends Component {
         code: '',
         name: '',
         shortName: '',
-        presentation: '',
+        categoryId: '',
         isReturnable: false,
         cost: 0,
         price: 0
-      }
+      },
+      categories: []
     };
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    this.setState({ loading: true, error: null });
+    try {
+      const categories = await api.categories.list();
+      for (const category of categories) {
+        category.isSelected = false;
+      }
+      this.setState({ loading: false, categories });
+    } catch (error) {
+      this.setState({ loading: false, error });
+    }
+  };
 
   handleSubmit = async e => {
     e.preventDefault();
@@ -45,7 +63,7 @@ class NewProductFormModal extends Component {
       form.code = '';
       form.name = '';
       form.shortName = '';
-      form.presentation = '';
+      form.categoryId = '';
       form.returnable = false;
       form.cost = 0;
       form.cost = 0;
@@ -114,17 +132,25 @@ class NewProductFormModal extends Component {
               </Col>
             </FormGroup>
             <FormGroup row className="text-right">
-              <Label for="presentation" xs={5} sm={4}>
+              <Label for="category-id" xs={5} sm={4}>
                 Presentación:
               </Label>
               <Col>
                 <Input
-                  type="text"
-                  id="presentation"
-                  name="presentation"
-                  value={form.presentation}
+                  type="select"
+                  id="category-id"
+                  name="categoryId"
+                  value={form.categoryId}
                   onChange={this.handleFormChange}
-                />
+                >
+                  {this.state.categories.map(value => {
+                    return (
+                      <option key={value.id} value={value.id}>
+                        {value.description}
+                      </option>
+                    );
+                  })}
+                </Input>
               </Col>
             </FormGroup>
             <FormGroup row className="text-right">

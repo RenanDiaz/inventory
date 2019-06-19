@@ -20,7 +20,7 @@ async function callApi(endpoint, options = {}) {
 const api = {
   products: {
     list() {
-      return callApi('/products');
+      return callApi('/products?_expand=category');
     },
     create(product) {
       return callApi(`/products`, {
