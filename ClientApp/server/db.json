@@ -1,4 +1,6 @@
 {
   "products": [],
-  "categories": []
+  "categories": [],
+  "purchases": [],
+  "orders": []
 }
