@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Container } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NewCategoryFormModal from '../components/NewCategoryFormModal';
+import CategoryFormModal from '../components/CategoryFormModal';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import classnames from 'classnames';
 import api from '../api';
+import './styles/Categories.css';
 
 class Categories extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Categories extends Component {
       loading: true,
       error: null,
       categories: undefined,
+      selectedCategory: undefined,
       modal: false
     };
   }
@@ -30,7 +32,7 @@ class Categories extends Component {
       for (const category of categories) {
         category.isSelected = false;
       }
-      this.setState({ loading: false, categories });
+      this.setState({ loading: false, categories, selectedCategory: undefined });
     } catch (error) {
       this.setState({ loading: false, error });
     }
@@ -49,8 +51,9 @@ class Categories extends Component {
     for (const category of categories) {
       category.isSelected = false;
     }
-    categories[index].isSelected = true;
-    this.setState({ categories });
+    const selectedCategory = categories[index];
+    selectedCategory.isSelected = true;
+    this.setState({ categories, selectedCategory, modal: true });
   };
 
   render() {
@@ -73,7 +76,11 @@ class Categories extends Component {
                 <Button color="primary" onClick={this.toggle}>
                   <FontAwesomeIcon icon="plus" />
                 </Button>
-                <NewCategoryFormModal isOpen={this.state.modal} toggle={this.toggle} />
+                <CategoryFormModal
+                  isOpen={this.state.modal}
+                  toggle={this.toggle}
+                  category={this.state.selectedCategory}
+                />
               </Col>
             </Row>
           </Container>
@@ -130,9 +137,15 @@ class Categories extends Component {
             </div>
             <Row className="desktop-table-container">
               <Col>
-                {this.state.categories.map(value => {
+                {this.state.categories.map((value, index) => {
                   return (
-                    <Row key={value.id} className="border-top py-2 justify-content-center">
+                    <Row
+                      key={value.id}
+                      className={classnames('border-top py-2 justify-content-center category-column', {
+                        active: value.isSelected
+                      })}
+                      onClick={() => this.select(index)}
+                    >
                       <Col xs={1}>{value.volume}</Col>
                       <Col xs={2}>{value.container}</Col>
                       <Col xs={1} className="text-right">

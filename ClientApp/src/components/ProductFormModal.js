@@ -16,9 +16,10 @@ import {
 import NumberFormat from 'react-number-format';
 import api from '../api';
 
-class NewProductFormModal extends Component {
+class ProductFormModal extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       loading: true,
       error: null,
@@ -27,7 +28,6 @@ class NewProductFormModal extends Component {
         name: '',
         shortName: '',
         categoryId: '',
-        isReturnable: false,
         cost: 0,
         price: 0
       },
@@ -37,6 +37,26 @@ class NewProductFormModal extends Component {
 
   componentDidMount() {
     this.fetchData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.product && this.props.product) {
+      const product = this.props.product;
+      this.setState({
+        form: {
+          code: product.code,
+          name: product.name,
+          shortName: product.shortName,
+          categoryId: product.categoryId,
+          cost: product.cost,
+          price: product.price
+        }
+      });
+    }
+
+    if (!this.props.product && prevProps.product) {
+      this.clearForm();
+    }
   }
 
   fetchData = async () => {
@@ -59,15 +79,12 @@ class NewProductFormModal extends Component {
       form.shortName = form.name;
     }
     try {
-      await api.products.create(form);
-      form.code = '';
-      form.name = '';
-      form.shortName = '';
-      form.categoryId = '';
-      form.returnable = false;
-      form.cost = 0;
-      form.cost = 0;
-      this.setState({ form });
+      if (this.props.product) {
+        await api.products.update(this.props.product.id, form);
+      } else {
+        await api.products.create(form);
+      }
+      this.clearForm();
       this.props.toggle();
     } catch (error) {
       this.setState({ error });
@@ -85,11 +102,27 @@ class NewProductFormModal extends Component {
     this.setState({ form });
   };
 
+  clearForm = () => {
+    this.setState({
+      form: {
+        code: '',
+        name: '',
+        shortName: '',
+        categoryId: '',
+        cost: 0,
+        price: 0
+      }
+    });
+  };
+
   render() {
     const form = this.state.form;
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} autoFocus={false}>
-        <ModalHeader toggle={this.props.toggle}>Nuevo producto</ModalHeader>
+        <ModalHeader toggle={this.props.toggle}>
+          {this.props.product && 'Editar producto'}
+          {!this.props.product && 'Nuevo producto'}
+        </ModalHeader>
         <ModalBody>
           <Form id="new-product" onSubmit={this.handleSubmit}>
             <FormGroup row className="text-right">
@@ -204,18 +237,6 @@ class NewProductFormModal extends Component {
                 />
               </Label>
             </FormGroup>
-            <FormGroup row check className="justify-content-center">
-              <Label for="is-returnable" check xs="auto">
-                <Input
-                  type="checkbox"
-                  id="is-returnable"
-                  name="isReturnable"
-                  value={form.isReturnable}
-                  onChange={this.handleFormChange}
-                />
-                Retornable
-              </Label>
-            </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
@@ -231,4 +252,4 @@ class NewProductFormModal extends Component {
   }
 }
 
-export default NewProductFormModal;
+export default ProductFormModal;

@@ -18,7 +18,7 @@ import {
 } from 'reactstrap';
 import api from '../api';
 
-class NewCategoryFormModal extends Component {
+class CategoryFormModal extends Component {
   constructor(props) {
     super(props);
 
@@ -33,9 +33,31 @@ class NewCategoryFormModal extends Component {
         units: 12,
         description: '',
         brief: '',
-        returnable: false
+        isReturnable: false
       }
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.category && this.props.category) {
+      const category = this.props.category;
+      const splitVolume = /^([0-9]+[.]?[0-9]*)(.+)$/.exec(category.volume);
+      this.setState({
+        form: {
+          volume: splitVolume[1],
+          container: category.container,
+          units: category.units,
+          description: category.description,
+          brief: category.brief,
+          isReturnable: category.isReturnable
+        },
+        selectedUnit: splitVolume[2]
+      });
+    }
+
+    if (!this.props.category && prevProps.category) {
+      this.clearForm();
+    }
   }
 
   handleSubmit = async e => {
@@ -49,14 +71,12 @@ class NewCategoryFormModal extends Component {
       form.brief = form.volume;
     }
     try {
-      await api.categories.create(form);
-      form.volume = '';
-      form.container = 'Lata';
-      form.units = 12;
-      form.description = '';
-      form.brief = '';
-      form.returnable = false;
-      this.setState({ form, selectedUnit: 'mL' });
+      if (this.props.category) {
+        await api.categories.update(this.props.category.id, form);
+      } else {
+        await api.categories.create(form);
+      }
+      this.clearForm();
       this.props.toggle();
     } catch (error) {
       this.setState({ error });
@@ -78,11 +98,28 @@ class NewCategoryFormModal extends Component {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
   };
 
+  clearForm = () => {
+    this.setState({
+      form: {
+        volume: '',
+        container: 'Lata',
+        units: 12,
+        description: '',
+        brief: '',
+        isReturnable: false
+      },
+      selectedUnit: 'mL'
+    });
+  };
+
   render() {
     const form = this.state.form;
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} autoFocus={false}>
-        <ModalHeader toggle={this.props.toggle}>Nueva presentación</ModalHeader>
+        <ModalHeader toggle={this.props.toggle}>
+          {this.props.category && 'Editar presentación'}
+          {!this.props.category && 'Nueva presentación'}
+        </ModalHeader>
         <ModalBody>
           <Form id="new-category" onSubmit={this.handleSubmit}>
             <FormGroup row className="text-right">
@@ -133,6 +170,7 @@ class NewCategoryFormModal extends Component {
                   <option>Lata</option>
                   <option>Botella plástica</option>
                   <option>Botella de vidrio</option>
+                  <option>Tetrapack</option>
                 </Input>
               </Col>
             </FormGroup>
@@ -203,4 +241,4 @@ class NewCategoryFormModal extends Component {
   }
 }
 
-export default NewCategoryFormModal;
+export default CategoryFormModal;

@@ -1,0 +1,7 @@
+.category-column {
+  cursor: pointer;
+}
+
+.category-column:not(.active):hover {
+  background-color: #f8f9fa;
+}

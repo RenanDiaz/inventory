@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Container } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NewProductFormModal from '../components/NewProductFormModal';
+import ProductFormModal from '../components/ProductFormModal';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import NumberFormat from 'react-number-format';
@@ -17,6 +17,7 @@ class Catalog extends Component {
       loading: true,
       error: null,
       products: undefined,
+      selectedProduct: undefined,
       modal: false
     };
   }
@@ -32,7 +33,7 @@ class Catalog extends Component {
       for (const product of products) {
         product.isSelected = false;
       }
-      this.setState({ loading: false, products });
+      this.setState({ loading: false, products, selectedProduct: undefined });
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
@@ -53,8 +54,9 @@ class Catalog extends Component {
     for (const product of products) {
       product.isSelected = false;
     }
-    products[index].isSelected = true;
-    this.setState({ products });
+    const selectedProduct = products[index];
+    selectedProduct.isSelected = true;
+    this.setState({ products, selectedProduct, modal: true });
   };
 
   render() {
@@ -77,7 +79,7 @@ class Catalog extends Component {
                 <Button color="primary" onClick={this.toggle}>
                   <FontAwesomeIcon icon="plus" />
                 </Button>
-                <NewProductFormModal isOpen={this.state.modal} toggle={this.toggle} />
+                <ProductFormModal isOpen={this.state.modal} toggle={this.toggle} product={this.state.selectedProduct} />
               </Col>
             </Row>
           </Container>
@@ -144,8 +146,8 @@ class Catalog extends Component {
                     </Row>
                   </Col>
                   <Col xs="auto" className="px-0 lh-0">
-                    {value.isReturnable && <FontAwesomeIcon icon="exchange-alt" />}
-                    {!value.isReturnable && (
+                    {value.category.isReturnable && <FontAwesomeIcon icon="exchange-alt" />}
+                    {!value.category.isReturnable && (
                       <span className="fa-stack fa-1x">
                         <FontAwesomeIcon icon="exchange-alt" className="fa-stack-1x m-0" />
                         <FontAwesomeIcon icon="slash" className="fa-stack-1x m-0" />
@@ -178,9 +180,15 @@ class Catalog extends Component {
             </div>
             <Row className="desktop-table-container">
               <Col>
-                {this.state.products.map(value => {
+                {this.state.products.map((value, index) => {
                   return (
-                    <Row key={value.id} className="border-top py-2">
+                    <Row
+                      key={value.id}
+                      className={classnames('border-top py-2 product-column', {
+                        active: value.isSelected
+                      })}
+                      onClick={() => this.select(index)}
+                    >
                       <Col xs={1} className="font-weight-bold">
                         {value.code}
                       </Col>
@@ -217,7 +225,7 @@ class Catalog extends Component {
                           fixedDecimalScale
                         />
                       </Col>
-                      <Col xs={1}>{value.isReturnable ? 'Sí' : 'No'}</Col>
+                      <Col xs={1}>{value.category.isReturnable ? 'Sí' : 'No'}</Col>
                     </Row>
                   );
                 })}

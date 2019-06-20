@@ -44,3 +44,11 @@
 .row.active .text-muted {
   color: white !important;
 }
+
+.product-column {
+  cursor: pointer;
+}
+
+.product-column:not(.active):hover {
+  background-color: #f8f9fa;
+}
