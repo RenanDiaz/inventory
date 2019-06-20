@@ -167,14 +167,30 @@ class Catalog extends Component {
             <div className="fixed-top bg-white products-table-head">
               <Container>
                 <Row className="text-center font-weight-bold border-bottom py-2">
-                  <Col xs={1}>Código</Col>
-                  <Col xs={3}>Nombre</Col>
-                  <Col xs={2}>Nombre corto</Col>
-                  <Col xs={2}>Presentación</Col>
-                  <Col xs={1}>Costo</Col>
-                  <Col xs={1}>Precio</Col>
-                  <Col xs={1}>Ganancia</Col>
-                  <Col xs={1}>Retornable</Col>
+                  <Col xs={1} className="text-truncate">
+                    Código
+                  </Col>
+                  <Col xs={3} className="text-truncate">
+                    Nombre
+                  </Col>
+                  <Col xs={2} className="text-truncate">
+                    Nombre corto
+                  </Col>
+                  <Col xs={2} className="text-truncate">
+                    Presentación
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Costo
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Precio
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Gan.
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Ret.
+                  </Col>
                 </Row>
               </Container>
             </div>
@@ -184,7 +200,7 @@ class Catalog extends Component {
                   return (
                     <Row
                       key={value.id}
-                      className={classnames('border-top py-2 product-column', {
+                      className={classnames('border-bottom py-2 product-column', {
                         active: value.isSelected
                       })}
                       onClick={() => this.select(index)}

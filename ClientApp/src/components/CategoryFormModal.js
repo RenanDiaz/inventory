@@ -220,7 +220,7 @@ class CategoryFormModal extends Component {
                   type="checkbox"
                   id="is-returnable"
                   name="isReturnable"
-                  value={form.isReturnable}
+                  checked={form.isReturnable}
                   onChange={this.handleFormChange}
                 />
                 Retornable

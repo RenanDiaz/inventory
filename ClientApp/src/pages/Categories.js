@@ -126,12 +126,24 @@ class Categories extends Component {
             <div className="fixed-top bg-white products-table-head">
               <Container>
                 <Row className="text-center justify-content-center font-weight-bold border-bottom py-2">
-                  <Col xs={1}>Volúmen</Col>
-                  <Col xs={2}>Empaque</Col>
-                  <Col xs={1}>Unidades</Col>
-                  <Col xs={4}>Descripción</Col>
-                  <Col xs={3}>Corto</Col>
-                  <Col xs={1}>Retornable</Col>
+                  <Col xs={1} className="text-truncate">
+                    Vol.
+                  </Col>
+                  <Col xs={2} className="text-truncate">
+                    Empaque
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Unid.
+                  </Col>
+                  <Col xs={4} className="text-truncate">
+                    Descripción
+                  </Col>
+                  <Col xs={3} className="text-truncate">
+                    Corto
+                  </Col>
+                  <Col xs={1} className="text-truncate">
+                    Ret.
+                  </Col>
                 </Row>
               </Container>
             </div>
@@ -141,7 +153,7 @@ class Categories extends Component {
                   return (
                     <Row
                       key={value.id}
-                      className={classnames('border-top py-2 justify-content-center category-column', {
+                      className={classnames('border-bottom py-2 justify-content-center category-column', {
                         active: value.isSelected
                       })}
                       onClick={() => this.select(index)}
