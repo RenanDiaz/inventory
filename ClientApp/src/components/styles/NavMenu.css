@@ -7,9 +7,18 @@
 html {
   font-size: 14px;
 }
+
+.content {
+  margin-top: 50.25px;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+  }
+
+  .content {
+    margin-top: 57px;
   }
 }
 

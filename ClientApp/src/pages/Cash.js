@@ -75,7 +75,7 @@ class Cash extends Component {
     const paper = this.state.paper;
     const coins = this.state.coins;
     return (
-      <div>
+      <div className="content">
         <h4>Desglose de efectivo</h4>
         <Row className="justify-content-around">
           <Col xs={12} sm={6} md={4} lg={3} xl={2} className="text-center">
