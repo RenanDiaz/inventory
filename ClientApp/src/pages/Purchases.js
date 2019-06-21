@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Container } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProductFormModal from '../components/ProductFormModal';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import NumberFormat from 'react-number-format';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 import api from '../api';
-import './styles/Catalog.css';
 
-class Catalog extends Component {
+class Purchases extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: true,
       error: null,
-      products: undefined,
-      selectedProduct: undefined,
-      modal: false
+      purchases: undefined
     };
   }
 
@@ -29,38 +26,18 @@ class Catalog extends Component {
   fetchData = async () => {
     this.setState({ loading: true, error: null });
     try {
-      const products = await api.products.list();
-      for (const product of products) {
-        product.isSelected = false;
+      const purchases = await api.purchases.list();
+      for (const purchase of purchases) {
+        purchase.isSelected = false;
       }
-      this.setState({ loading: false, products, selectedProduct: undefined });
+      this.setState({ loading: false, purchases });
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
   };
 
-  toggle = () => {
-    const modal = !this.state.modal;
-    if (!modal) {
-      this.fetchData();
-    }
-    this.setState({
-      modal
-    });
-  };
-
-  select = index => {
-    const products = this.state.products;
-    for (const product of products) {
-      product.isSelected = false;
-    }
-    const selectedProduct = products[index];
-    selectedProduct.isSelected = true;
-    this.setState({ products, selectedProduct, modal: true });
-  };
-
   render() {
-    if (this.state.loading && !this.state.products) {
+    if (this.state.loading && !this.state.purchases) {
       return <PageLoading />;
     }
 
@@ -73,25 +50,24 @@ class Catalog extends Component {
           <Container>
             <Row className="py-2 border-bottom align-items-center">
               <Col>
-                <h4 className="mb-0">Catálogo de productos</h4>
+                <h4 className="mb-0">Compras</h4>
               </Col>
               <Col xs="auto">
-                <Button color="primary" onClick={this.toggle}>
+                <Button tag={Link} to={'/purchases/new'} color="primary">
                   <FontAwesomeIcon icon="plus" />
                 </Button>
-                <ProductFormModal isOpen={this.state.modal} toggle={this.toggle} product={this.state.selectedProduct} />
               </Col>
             </Row>
           </Container>
         </div>
         <Row className="d-md-none mobile-table-container">
           <Col>
-            {this.state.products.length < 1 && (
+            {this.state.purchases.length < 1 && (
               <Row className="justify-content-center py-3">
-                <Col xs="auto">No hay productos registrados</Col>
+                <Col xs="auto">No hay compras registradas</Col>
               </Row>
             )}
-            {this.state.products.map((value, index) => {
+            {this.state.purchases.map((value, index) => {
               return (
                 <Row
                   key={value.id}
@@ -171,42 +147,27 @@ class Catalog extends Component {
           <Col>
             <div className="fixed-top bg-white products-table-head">
               <Container>
-                <Row className="text-center font-weight-bold border-bottom py-2">
-                  <Col xs={1} className="text-truncate">
-                    Código
+                <Row className="text-center justify-content-center font-weight-bold border-bottom py-2">
+                  <Col xs={2} className="text-truncate">
+                    Fecha
                   </Col>
                   <Col xs={3} className="text-truncate">
-                    Nombre
+                    Proveedor
                   </Col>
                   <Col xs={2} className="text-truncate">
-                    Nombre corto
-                  </Col>
-                  <Col xs={2} className="text-truncate">
-                    Presentación
-                  </Col>
-                  <Col xs={1} className="text-truncate">
-                    Costo
-                  </Col>
-                  <Col xs={1} className="text-truncate">
-                    Precio
-                  </Col>
-                  <Col xs={1} className="text-truncate">
-                    Gan.
-                  </Col>
-                  <Col xs={1} className="text-truncate">
-                    Ret.
+                    Total
                   </Col>
                 </Row>
               </Container>
             </div>
             <Row className="desktop-table-container">
               <Col>
-                {this.state.products.length < 1 && (
+                {this.state.purchases.length < 1 && (
                   <Row className="justify-content-center py-3">
-                    <Col xs="auto">No hay productos registrados</Col>
+                    <Col xs="auto">No hay compras registradas</Col>
                   </Row>
                 )}
-                {this.state.products.map((value, index) => {
+                {this.state.purchases.map((value, index) => {
                   return (
                     <Row
                       key={value.id}
@@ -264,4 +225,4 @@ class Catalog extends Component {
   }
 }
 
-export default Catalog;
+export default Purchases;

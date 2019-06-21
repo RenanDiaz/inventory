@@ -131,6 +131,16 @@ export class NavMenu extends Component {
                     Pedidos
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    to="/purchases"
+                    active={window.location.pathname.includes('/purchases')}
+                    onClick={this.forceCollapseNavbar}
+                  >
+                    Compras
+                  </NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>

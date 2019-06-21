@@ -5,9 +5,12 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import Accounting from './pages/Accounting';
 import Orders from './pages/Orders';
+import Purchases from './pages/Purchases';
 import Catalog from './pages/Catalog';
 import Categories from './pages/Categories';
 import Cash from './pages/Cash';
+import Suppliers from './pages/Suppliers';
+import NewPurchase from './pages/NewPurchase';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faAngleRight, faExchangeAlt, faSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,6 +32,9 @@ export default class App extends Component {
         <Route exact path="/accounting" component={Accounting} />
         <Route exact path="/accounting/cash" component={Cash} />
         <Route exact path="/orders" component={Orders} />
+        <Route exact path="/purchases" component={Purchases} />
+        <Route exact path="/purchases/new" component={NewPurchase} />
+        <Route exact path="/suppliers" component={Suppliers} />
       </Layout>
     );
   }

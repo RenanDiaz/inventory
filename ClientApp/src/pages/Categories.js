@@ -87,6 +87,11 @@ class Categories extends Component {
         </div>
         <Row className="d-md-none mobile-table-container">
           <Col>
+            {this.state.categories.length < 1 && (
+              <Row className="justify-content-center py-3">
+                <Col xs="auto">No hay presentaciones registradas</Col>
+              </Row>
+            )}
             {this.state.categories.map((value, index) => {
               return (
                 <Row
@@ -149,6 +154,11 @@ class Categories extends Component {
             </div>
             <Row className="desktop-table-container">
               <Col>
+                {this.state.categories.length < 1 && (
+                  <Row className="justify-content-center py-3">
+                    <Col xs="auto">No hay presentaciones registradas</Col>
+                  </Row>
+                )}
                 {this.state.categories.map((value, index) => {
                   return (
                     <Row
