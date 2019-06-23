@@ -17,6 +17,7 @@ import {
   ModalFooter
 } from 'reactstrap';
 import api from '../api';
+import PageError from './PageError';
 
 class CategoryFormModal extends Component {
   constructor(props) {
@@ -112,7 +113,35 @@ class CategoryFormModal extends Component {
     });
   };
 
+  closeError = () => {
+    this.props.toggle();
+    this.clearForm();
+  };
+
+  clearError = e => {
+    e.preventDefault();
+    this.setState({ error: null });
+  };
+
   render() {
+    if (this.state.error) {
+      return (
+        <Modal isOpen={this.props.isOpen} toggle={this.closeError} className={this.props.className}>
+          <ModalHeader toggle={this.closeError} />
+          <ModalBody>
+            <PageError error={this.state.error} inline />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.clearError}>
+              Reintentar
+            </Button>{' '}
+            <Button color="secondary" onClick={this.closeError}>
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      );
+    }
     const form = this.state.form;
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} autoFocus={false}>

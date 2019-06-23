@@ -14,6 +14,7 @@ import {
   ModalFooter
 } from 'reactstrap';
 import NumberFormat from 'react-number-format';
+import PageError from '../components/PageError';
 import api from '../api';
 
 class ProductFormModal extends Component {
@@ -21,7 +22,6 @@ class ProductFormModal extends Component {
     super(props);
 
     this.state = {
-      loading: true,
       error: null,
       form: {
         code: '',
@@ -60,15 +60,15 @@ class ProductFormModal extends Component {
   }
 
   fetchData = async () => {
-    this.setState({ loading: true, error: null });
+    this.setState({ error: null });
     try {
       const categories = await api.categories.list();
       for (const category of categories) {
         category.isSelected = false;
       }
-      this.setState({ loading: false, categories });
+      this.setState({ categories });
     } catch (error) {
-      this.setState({ loading: false, error });
+      this.setState({ error });
     }
   };
 
@@ -104,6 +104,7 @@ class ProductFormModal extends Component {
 
   clearForm = () => {
     this.setState({
+      error: null,
       form: {
         code: '',
         name: '',
@@ -115,7 +116,35 @@ class ProductFormModal extends Component {
     });
   };
 
+  closeError = () => {
+    this.props.toggle();
+    this.clearForm();
+  };
+
+  clearError = e => {
+    e.preventDefault();
+    this.setState({ error: null });
+  };
+
   render() {
+    if (this.props.isOpen && this.state.error) {
+      return (
+        <Modal isOpen={this.props.isOpen} toggle={this.closeError} className={this.props.className}>
+          <ModalHeader toggle={this.closeError} />
+          <ModalBody>
+            <PageError error={this.state.error} inline />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.clearError}>
+              Reintentar
+            </Button>{' '}
+            <Button color="secondary" onClick={this.closeError}>
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      );
+    }
     const form = this.state.form;
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} autoFocus={false}>

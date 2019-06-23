@@ -12,12 +12,21 @@ import Cash from './pages/Cash';
 import Suppliers from './pages/Suppliers';
 import NewPurchase from './pages/NewPurchase';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faAngleRight, faExchangeAlt, faSlash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faAngleRight,
+  faExchangeAlt,
+  faSlash,
+  faPlusCircle,
+  faMinusCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPlus);
 library.add(faAngleRight);
 library.add(faExchangeAlt);
 library.add(faSlash);
+library.add(faPlusCircle);
+library.add(faMinusCircle);
 
 export default class App extends Component {
   static displayName = App.name;

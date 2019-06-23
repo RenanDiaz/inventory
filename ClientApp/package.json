@@ -10,12 +10,13 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "react": "^16.0.0",
+    "react-datepicker": "^2.7.0",
     "react-dom": "^16.0.0",
     "react-number-format": "^4.0.8",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^3.0.1",
-    "reactstrap": "^6.3.0",
+    "reactstrap": "^8.0.0",
     "rimraf": "^2.6.2"
   },
   "devDependencies": {

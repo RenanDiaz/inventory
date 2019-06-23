@@ -1,0 +1,11 @@
+#add-products-form .products-modal-table-container {
+  max-height: calc(100vh - 170px - 76px);
+  overflow: auto;
+}
+
+@media (min-width: 576px) {
+  #add-products-form .products-modal-table-container {
+    max-height: calc(100vh - 233px);
+    overflow: auto;
+  }
+}

@@ -60,101 +60,18 @@ class Purchases extends Component {
             </Row>
           </Container>
         </div>
-        <Row className="d-md-none mobile-table-container">
-          <Col>
-            {this.state.purchases.length < 1 && (
-              <Row className="justify-content-center py-3">
-                <Col xs="auto">No hay compras registradas</Col>
-              </Row>
-            )}
-            {this.state.purchases.map((value, index) => {
-              return (
-                <Row
-                  key={value.id}
-                  className={classnames('align-items-center border-bottom', { active: value.isSelected })}
-                  onClick={() => this.select(index)}
-                >
-                  <Col xs={2} className="text-center font-weight-bold">
-                    {value.code}
-                  </Col>
-                  <Col>
-                    <Row>
-                      <Col className="text-truncate">{value.name}</Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <span className="text-muted small">{value.category.brief}</span>
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col xs="auto" className="text-right">
-                    <Row>
-                      <Col className="small lh-1">
-                        <NumberFormat
-                          value={value.price}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="small lh-1">
-                        <NumberFormat
-                          value={value.cost}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                          className="text-muted"
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="small lh-1">
-                        <NumberFormat
-                          value={value.price - value.cost}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                        />
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col xs="auto" className="px-0 lh-0">
-                    {value.category.isReturnable && <FontAwesomeIcon icon="exchange-alt" />}
-                    {!value.category.isReturnable && (
-                      <span className="fa-stack fa-1x">
-                        <FontAwesomeIcon icon="exchange-alt" className="fa-stack-1x m-0" />
-                        <FontAwesomeIcon icon="slash" className="fa-stack-1x m-0" />
-                      </span>
-                    )}
-                  </Col>
-                  <Col xs="auto" className="text-muted">
-                    <FontAwesomeIcon icon="angle-right" />
-                  </Col>
-                </Row>
-              );
-            })}
-          </Col>
-        </Row>
-        <Row className="d-none d-md-block">
+        <Row>
           <Col>
             <div className="fixed-top bg-white products-table-head">
               <Container>
                 <Row className="text-center justify-content-center font-weight-bold border-bottom py-2">
-                  <Col xs={2} className="text-truncate">
+                  <Col xs={3} className="text-truncate">
                     Fecha
                   </Col>
                   <Col xs={3} className="text-truncate">
-                    Proveedor
+                    Entrega
                   </Col>
-                  <Col xs={2} className="text-truncate">
+                  <Col xs={3} className="text-truncate">
                     Total
                   </Col>
                 </Row>
@@ -167,24 +84,24 @@ class Purchases extends Component {
                     <Col xs="auto">No hay compras registradas</Col>
                   </Row>
                 )}
-                {this.state.purchases.map((value, index) => {
+                {this.state.purchases.map((purchase, index) => {
                   return (
                     <Row
-                      key={value.id}
-                      className={classnames('border-bottom py-2 product-column', {
-                        active: value.isSelected
+                      key={purchase.id}
+                      className={classnames('justify-content-center border-bottom py-2 product-column', {
+                        active: purchase.isSelected
                       })}
                       onClick={() => this.select(index)}
                     >
-                      <Col xs={1} className="font-weight-bold">
-                        {value.code}
+                      <Col xs={3} className="text-center">
+                        {new Date(purchase.orderDate).toLocaleDateString('es')}
                       </Col>
-                      <Col xs={3}>{value.name}</Col>
-                      <Col xs={2}>{value.shortName}</Col>
-                      <Col xs={2}>{value.category.brief}</Col>
-                      <Col xs={1} className="text-right">
+                      <Col xs={3} className="text-center">
+                        {new Date(purchase.deliveryDate).toLocaleDateString('es')}
+                      </Col>
+                      <Col xs={3} className="text-right">
                         <NumberFormat
-                          value={value.cost}
+                          value={purchase.total}
                           displayType={'text'}
                           prefix={'$'}
                           thousandSeparator
@@ -192,27 +109,6 @@ class Purchases extends Component {
                           fixedDecimalScale
                         />
                       </Col>
-                      <Col xs={1} className="text-right">
-                        <NumberFormat
-                          value={value.price}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                        />
-                      </Col>
-                      <Col xs={1} className="text-right">
-                        <NumberFormat
-                          value={value.price - value.cost}
-                          displayType={'text'}
-                          prefix={'$'}
-                          thousandSeparator
-                          decimalScale={2}
-                          fixedDecimalScale
-                        />
-                      </Col>
-                      <Col xs={1}>{value.category.isReturnable ? 'Sí' : 'No'}</Col>
                     </Row>
                   );
                 })}

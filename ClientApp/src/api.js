@@ -92,6 +92,31 @@ const api = {
         method: 'DELETE'
       });
     }
+  },
+  purchasedProducts: {
+    list() {
+      return callApi('/purchasesProducts');
+    },
+    create(purchase) {
+      return callApi(`/purchasesProducts`, {
+        method: 'POST',
+        body: JSON.stringify(purchase)
+      });
+    },
+    read(id) {
+      return callApi(`/purchasesProducts/${id}`);
+    },
+    update(id, updates) {
+      return callApi(`/purchasesProducts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates)
+      });
+    },
+    remove(id) {
+      return callApi(`/purchasesProducts/${id}`, {
+        method: 'DELETE'
+      });
+    }
   }
 };
 
