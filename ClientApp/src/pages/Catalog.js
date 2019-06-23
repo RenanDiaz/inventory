@@ -7,7 +7,6 @@ import PageError from '../components/PageError';
 import NumberFormat from 'react-number-format';
 import classnames from 'classnames';
 import api from '../api';
-import './styles/Catalog.css';
 
 class Catalog extends Component {
   constructor(props) {
@@ -95,7 +94,9 @@ class Catalog extends Component {
               return (
                 <Row
                   key={value.id}
-                  className={classnames('align-items-center border-bottom', { active: value.isSelected })}
+                  className={classnames('align-items-center border-bottom selectable-row', {
+                    active: value.isSelected
+                  })}
                   onClick={() => this.select(index)}
                 >
                   <Col xs={2} className="text-center font-weight-bold">
@@ -169,7 +170,7 @@ class Catalog extends Component {
         </Row>
         <Row className="d-none d-md-block">
           <Col>
-            <div className="fixed-top bg-white products-table-head">
+            <div className="fixed-top bg-white desktop-table-head">
               <Container>
                 <Row className="text-center font-weight-bold border-bottom py-2">
                   <Col xs={1} className="text-truncate">
@@ -210,7 +211,7 @@ class Catalog extends Component {
                   return (
                     <Row
                       key={value.id}
-                      className={classnames('border-bottom py-2 product-column', {
+                      className={classnames('border-bottom py-2 selectable-row', {
                         active: value.isSelected
                       })}
                       onClick={() => this.select(index)}

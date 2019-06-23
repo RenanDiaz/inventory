@@ -108,18 +108,18 @@ class ProductsModal extends Component {
                       <Col xs="auto">No hay productos registrados</Col>
                     </Row>
                   )}
-                  {this.state.products.map((value, index) => {
+                  {this.state.products.map((product, index) => {
                     return (
                       <Row
-                        key={value.id}
-                        className={classnames('border-bottom py-2 product-column', {
-                          active: value.isSelected
+                        key={product.id}
+                        className={classnames('border-bottom py-2 selectable-row', {
+                          active: product.isSelected
                         })}
                         onClick={() => this.toggleSelect(index)}
                       >
-                        <Col xs={5}>{value.shortName}</Col>
-                        <Col xs={5}>{value.category.brief}</Col>
-                        <Col xs={2}>{value.category.isReturnable ? 'Sí' : 'No'}</Col>
+                        <Col xs={5}>{product.shortName}</Col>
+                        <Col xs={5}>{product.category.brief}</Col>
+                        <Col xs={2}>{product.category.isReturnable ? 'Sí' : 'No'}</Col>
                       </Row>
                     );
                   })}

@@ -20,6 +20,7 @@ import {
   faPlusCircle,
   faMinusCircle
 } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 library.add(faPlus);
 library.add(faAngleRight);

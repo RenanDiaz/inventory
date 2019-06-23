@@ -36,6 +36,15 @@ class Purchases extends Component {
     }
   };
 
+  select = index => {
+    const purchases = this.state.purchases;
+    for (const purchase of purchases) {
+      purchase.isSelected = false;
+    }
+    purchases[index].isSelected = true;
+    this.setState({ purchases });
+  };
+
   render() {
     if (this.state.loading && !this.state.purchases) {
       return <PageLoading />;
@@ -62,7 +71,7 @@ class Purchases extends Component {
         </div>
         <Row>
           <Col>
-            <div className="fixed-top bg-white products-table-head">
+            <div className="fixed-top bg-white mixed-table-head">
               <Container>
                 <Row className="text-center justify-content-center font-weight-bold border-bottom py-2">
                   <Col xs={3} className="text-truncate">
@@ -77,7 +86,7 @@ class Purchases extends Component {
                 </Row>
               </Container>
             </div>
-            <Row className="desktop-table-container">
+            <Row className="mixed-table-container">
               <Col>
                 {this.state.purchases.length < 1 && (
                   <Row className="justify-content-center py-3">
@@ -88,7 +97,7 @@ class Purchases extends Component {
                   return (
                     <Row
                       key={purchase.id}
-                      className={classnames('justify-content-center border-bottom py-2 product-column', {
+                      className={classnames('justify-content-center border-bottom py-2 selectable-row', {
                         active: purchase.isSelected
                       })}
                       onClick={() => this.select(index)}

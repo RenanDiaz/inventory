@@ -128,7 +128,7 @@ class Categories extends Component {
         </Row>
         <Row className="d-none d-md-block">
           <Col>
-            <div className="fixed-top bg-white products-table-head">
+            <div className="fixed-top bg-white desktop-table-head">
               <Container>
                 <Row className="text-center justify-content-center font-weight-bold border-bottom py-2">
                   <Col xs={1} className="text-truncate">
