@@ -95,25 +95,50 @@ const api = {
   },
   purchasedProducts: {
     list() {
-      return callApi('/purchasesProducts');
+      return callApi('/purchasedProducts');
     },
     create(purchase) {
-      return callApi(`/purchasesProducts`, {
+      return callApi(`/purchasedProducts`, {
         method: 'POST',
         body: JSON.stringify(purchase)
       });
     },
     read(id) {
-      return callApi(`/purchasesProducts/${id}`);
+      return callApi(`/purchasedProducts/${id}`);
     },
     update(id, updates) {
-      return callApi(`/purchasesProducts/${id}`, {
+      return callApi(`/purchasedProducts/${id}`, {
         method: 'PUT',
         body: JSON.stringify(updates)
       });
     },
     remove(id) {
-      return callApi(`/purchasesProducts/${id}`, {
+      return callApi(`/purchasedProducts/${id}`, {
+        method: 'DELETE'
+      });
+    }
+  },
+  items: {
+    list() {
+      return callApi('/items');
+    },
+    create(item) {
+      return callApi(`/items`, {
+        method: 'POST',
+        body: JSON.stringify(item)
+      });
+    },
+    read(id) {
+      return callApi(`/items/${id}`);
+    },
+    update(id, updates) {
+      return callApi(`/items/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates)
+      });
+    },
+    remove(id) {
+      return callApi(`/items/${id}`, {
         method: 'DELETE'
       });
     }

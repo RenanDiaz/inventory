@@ -34,7 +34,7 @@ class Catalog extends Component {
       }
       this.setState({ loading: false, products, selectedProduct: undefined });
     } catch (error) {
-      this.setState({ loading: false, error: error });
+      this.setState({ loading: false, error });
     }
   };
 

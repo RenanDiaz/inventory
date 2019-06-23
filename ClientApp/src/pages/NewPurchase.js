@@ -22,7 +22,21 @@ class NewPurchase extends Component {
       },
       products: []
     };
+
+    this.items = [];
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    try {
+      this.items = await api.items.list();
+    } catch (error) {
+      this.setState({ error });
+    }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     const form = this.state.form;
@@ -62,7 +76,8 @@ class NewPurchase extends Component {
   addSelectedProducts = newProducts => {
     const products = this.state.products
       .concat(newProducts.filter(product => !this.state.products.includes(product)))
-      .sort((a, b) => a.id - b.id);
+      .sort((a, b) => a.id - b.id)
+      .filter(product => newProducts.includes(product));
     this.setState({ products });
   };
 
@@ -83,19 +98,30 @@ class NewPurchase extends Component {
       if (this.state.products.length < 1) {
         errorMessages.push('No se puede ingresar una compra sin productos.');
       }
-      const products = this.state.products.map(product => {
+      const products = this.state.products;
+      for (const product of products) {
         if (!product.quantity || product.quantity < 1) {
           errorMessages.push(`El producto ${product.name} ${product.category.brief} tiene una cantidad inválida.`);
         }
-        return { productId: product.id, quantity: product.quantity };
-      });
+      }
       if (errorMessages.length > 0) {
         throw new Error(errorMessages.join('\n'));
       }
       const purchase = await api.purchases.create(form);
       for (const product of products) {
-        product.purchaseId = purchase.id;
-        await api.purchasedProducts.create(product);
+        await api.purchasedProducts.create({
+          quantity: product.quantity,
+          productId: product.id,
+          purchaseId: purchase.id
+        });
+        const filteredItems = this.items.filter(item => item.id === product.id);
+        if (filteredItems.length > 0) {
+          const item = filteredItems[0];
+          item.quantity += product.quantity;
+          await api.items.update(item.id, item);
+        } else {
+          await api.items.create({ quantity: product.quantity, productId: product.id });
+        }
       }
       this.props.history.push('/purchases');
     } catch (error) {
