@@ -308,18 +308,22 @@ class NewPurchase extends Component {
         </Form>
         <div className="fixed-bottom bg-white">
           <Container>
-            <Row className="justify-content-end my-1 font-weight-bold">
-              <Label xs="auto">Total:</Label>
-              <Label xs="auto">
-                <NumberFormat
-                  value={form.total}
-                  displayType={'text'}
-                  prefix={'$'}
-                  thousandSeparator
-                  decimalScale={2}
-                  fixedDecimalScale
-                />
-              </Label>
+            <Row className="justify-content-between my-1 font-weight-bold">
+              <Col xs="auto">
+                <Row className="no-gutters">
+                  <Label xs="auto">Total:</Label>
+                  <Label xs="auto" className="pl-3 bigger">
+                    <NumberFormat
+                      value={form.total}
+                      displayType={'text'}
+                      prefix={'$'}
+                      thousandSeparator
+                      decimalScale={2}
+                      fixedDecimalScale
+                    />
+                  </Label>
+                </Row>
+              </Col>
               <Col xs="auto">
                 <Button type="submit" color="primary" form="new-purchase">
                   Guardar
