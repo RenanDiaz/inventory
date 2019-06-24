@@ -13,11 +13,14 @@ class NewPurchase extends Component {
   constructor(props) {
     super(props);
 
+    const todayDateTime = new Date();
+    const today = new Date(todayDateTime.getFullYear(), todayDateTime.getMonth(), todayDateTime.getDate());
+
     this.state = {
       error: null,
       form: {
-        orderDate: new Date(),
-        deliveryDate: new Date(),
+        orderDate: today,
+        deliveryDate: today,
         total: 0
       },
       products: []

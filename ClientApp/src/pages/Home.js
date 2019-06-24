@@ -61,7 +61,9 @@ class Home extends Component {
     if (e.target.id !== 'new-sale') return;
     const items = this.state.items;
     try {
-      const sale = await api.sales.create({ date: new Date(), total: this.state.sale });
+      const todayDateTime = new Date();
+      const today = new Date(todayDateTime.getFullYear(), todayDateTime.getMonth(), todayDateTime.getDate());
+      const sale = await api.sales.create({ date: today, total: this.state.sale });
       for (const item of items) {
         if (item.quantity === '') item.quantity = 0;
         await api.items.update(item.id, {

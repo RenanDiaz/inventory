@@ -11,6 +11,7 @@ import Categories from './pages/Categories';
 import Cash from './pages/Cash';
 import Suppliers from './pages/Suppliers';
 import NewPurchase from './pages/NewPurchase';
+import Sales from './pages/Sales';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
@@ -45,6 +46,7 @@ export default class App extends Component {
         <Route exact path="/purchases" component={Purchases} />
         <Route exact path="/purchases/new" component={NewPurchase} />
         <Route exact path="/suppliers" component={Suppliers} />
+        <Route exact path="/sales" component={Sales} />
       </Layout>
     );
   }
