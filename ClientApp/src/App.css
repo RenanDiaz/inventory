@@ -1,5 +1,10 @@
 html {
   -webkit-text-size-adjust: none;
+  font-size: 14px;
+}
+
+.content {
+  margin-top: 50.25px;
 }
 
 .lh-0 {
@@ -38,6 +43,14 @@ html {
 }
 
 @media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  .content {
+    margin-top: 57px;
+  }
+
   .page-title {
     margin-top: 57px;
   }
@@ -68,4 +81,8 @@ html {
 
 .selectable-row:not(.active):hover {
   background-color: #f8f9fa;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }

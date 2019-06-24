@@ -4,5 +4,7 @@
   "purchases": [],
   "orders": [],
   "suppliers": [],
-  "items": []
+  "items": [],
+  "sales": [],
+  "soldProducts": []
 }

@@ -97,10 +97,10 @@ const api = {
     list() {
       return callApi('/purchasedProducts');
     },
-    create(purchase) {
+    create(purchasedProduct) {
       return callApi(`/purchasedProducts`, {
         method: 'POST',
-        body: JSON.stringify(purchase)
+        body: JSON.stringify(purchasedProduct)
       });
     },
     read(id) {
@@ -120,7 +120,7 @@ const api = {
   },
   items: {
     list() {
-      return callApi('/items');
+      return callApi('/items?_expand=product&_expand=category');
     },
     create(item) {
       return callApi(`/items`, {
@@ -139,6 +139,56 @@ const api = {
     },
     remove(id) {
       return callApi(`/items/${id}`, {
+        method: 'DELETE'
+      });
+    }
+  },
+  sales: {
+    list() {
+      return callApi('/sales');
+    },
+    create(sale) {
+      return callApi(`/sales`, {
+        method: 'POST',
+        body: JSON.stringify(sale)
+      });
+    },
+    read(id) {
+      return callApi(`/sales/${id}`);
+    },
+    update(id, updates) {
+      return callApi(`/sales/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates)
+      });
+    },
+    remove(id) {
+      return callApi(`/sales/${id}`, {
+        method: 'DELETE'
+      });
+    }
+  },
+  soldProducts: {
+    list() {
+      return callApi('/soldProducts');
+    },
+    create(soldProduct) {
+      return callApi(`/soldProducts`, {
+        method: 'POST',
+        body: JSON.stringify(soldProduct)
+      });
+    },
+    read(id) {
+      return callApi(`/soldProducts/${id}`);
+    },
+    update(id, updates) {
+      return callApi(`/soldProducts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates)
+      });
+    },
+    remove(id) {
+      return callApi(`/soldProducts/${id}`, {
         method: 'DELETE'
       });
     }

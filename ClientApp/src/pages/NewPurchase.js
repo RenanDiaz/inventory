@@ -120,7 +120,7 @@ class NewPurchase extends Component {
           item.quantity += product.quantity;
           await api.items.update(item.id, item);
         } else {
-          await api.items.create({ quantity: product.quantity, productId: product.id });
+          await api.items.create({ categoryId: product.categoryId, productId: product.id, quantity: product.quantity });
         }
       }
       this.props.history.push('/purchases');
