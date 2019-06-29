@@ -100,37 +100,80 @@ class Home extends Component {
     return (
       <div className="content">
         <Form id="new-sale" onSubmit={this.handleSubmit}>
+          <Row className="text-center font-weight-bold border-bottom py-2 d-none d-sm-flex">
+            <Col xs={3} className="text-truncate">
+              Nombre
+            </Col>
+            <Col xs={3} className="text-truncate">
+              Presentación
+            </Col>
+            <Col xs={2} className="text-truncate">
+              Total
+            </Col>
+            <Col xs={2} className="text-truncate">
+              Devolución
+            </Col>
+            <Col xs={2} className="text-truncate">
+              Venta
+            </Col>
+          </Row>
           {items.map((item, index) => {
             if (item.oldQuantity < 1) return null;
             return (
-              <Row key={item.id} className="align-items-center border-bottom py-2 d-sm-none">
-                <Col>
-                  <Row>
-                    <Col className="text-truncate">{item.product.shortName}</Col>
-                  </Row>
-                  <Row>
-                    <Col className="text-truncate">
-                      <span className="text-muted small">{item.category.brief}</span>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col xs="auto" className="text-right px-0">
-                  <NumberFormat value={item.oldQuantity} displayType={'text'} thousandSeparator />
-                </Col>
-                <Col xs="3">
-                  <Input
-                    value={item.quantity}
-                    type="text"
-                    pattern="\d*"
-                    className="text-right"
-                    onChange={e => this.handleQuantityChange(e, index)}
-                    onFocus={this.handleFocus}
-                  />
-                </Col>
-                <Col xs={2} className="text-right pl-0">
-                  <NumberFormat value={item.oldQuantity - item.quantity} displayType={'text'} thousandSeparator />
-                </Col>
-              </Row>
+              <React.Fragment key={item.id}>
+                <Row className="align-items-center border-bottom py-2 d-sm-none">
+                  <Col>
+                    <Row>
+                      <Col className="text-truncate">{item.product.shortName}</Col>
+                    </Row>
+                    <Row>
+                      <Col className="text-truncate">
+                        <span className="text-muted small">{item.category.brief}</span>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col xs="auto" className="text-right px-0">
+                    <NumberFormat value={item.oldQuantity} displayType={'text'} thousandSeparator />
+                  </Col>
+                  <Col xs="3">
+                    <Input
+                      value={item.quantity}
+                      type="text"
+                      pattern="\d*"
+                      className="text-right"
+                      onChange={e => this.handleQuantityChange(e, index)}
+                      onFocus={this.handleFocus}
+                    />
+                  </Col>
+                  <Col xs={2} className="text-right pl-0">
+                    <NumberFormat value={item.oldQuantity - item.quantity} displayType={'text'} thousandSeparator />
+                  </Col>
+                </Row>
+                <Row className="align-items-center py-2 d-none d-sm-flex border-bottom">
+                  <Col xs={3} className="text-truncate">
+                    {item.product.shortName}
+                  </Col>
+                  <Col xs={3} className="text-truncate">
+                    {item.category.brief}
+                  </Col>
+                  <Col xs={2} className="text-right">
+                    <NumberFormat value={item.oldQuantity} displayType={'text'} thousandSeparator />
+                  </Col>
+                  <Col xs={2}>
+                    <Input
+                      value={item.quantity}
+                      type="text"
+                      pattern="\d*"
+                      className="text-right"
+                      onChange={e => this.handleQuantityChange(e, index)}
+                      onFocus={this.handleFocus}
+                    />
+                  </Col>
+                  <Col xs={2} className="text-right">
+                    <NumberFormat value={item.oldQuantity - item.quantity} displayType={'text'} thousandSeparator />
+                  </Col>
+                </Row>
+              </React.Fragment>
             );
           })}
         </Form>
