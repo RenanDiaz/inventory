@@ -1,5 +1,130 @@
 {
   "app": {
     "name": "Inventario"
+  },
+  "nav": {
+    "dashboard": "Inicio",
+    "products": "Productos",
+    "sales": "Ventas",
+    "consignments": "Consignaciones",
+    "settings": "Ajustes"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "close": "Cerrar",
+    "yes": "Sí",
+    "no": "No",
+    "actions": "Acciones",
+    "noResults": "No se encontraron resultados",
+    "required": "Obligatorio",
+    "optional": "Opcional"
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "totalProducts": "Total de Productos",
+    "lowStock": "Stock Bajo",
+    "recentSales": "Ventas Recientes",
+    "openConsignments": "Consignaciones Abiertas"
+  },
+  "products": {
+    "title": "Productos",
+    "newProduct": "Nuevo Producto",
+    "editProduct": "Editar Producto",
+    "name": "Nombre",
+    "sku": "SKU",
+    "price": "Precio",
+    "cost": "Costo",
+    "stock": "Stock",
+    "minStock": "Stock Mín.",
+    "image": "Imagen",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "lowStock": "Stock bajo",
+    "searchPlaceholder": "Buscar por nombre o SKU...",
+    "noProducts": "Aún no hay productos",
+    "deleteConfirm": "¿Estás seguro de que deseas eliminar este producto?",
+    "validation": {
+      "nameRequired": "El nombre del producto es obligatorio",
+      "skuRequired": "El SKU es obligatorio",
+      "priceMin": "El precio debe ser mayor a 0",
+      "costMin": "El costo debe ser 0 o mayor",
+      "stockMin": "El stock debe ser 0 o mayor",
+      "minStockMin": "El stock mínimo debe ser 0 o mayor"
+    }
+  },
+  "inventory": {
+    "title": "Inventario",
+    "movement": "Movimiento",
+    "movements": "Movimientos",
+    "type": {
+      "IN": "Entrada",
+      "OUT": "Salida",
+      "ADJUSTMENT": "Ajuste",
+      "CONSIGNMENT_OUT": "Salida por Consignación",
+      "CONSIGNMENT_RETURN": "Devolución de Consignación"
+    },
+    "quantity": "Cantidad",
+    "unitPrice": "Precio Unitario"
+  },
+  "sales": {
+    "title": "Ventas",
+    "newSale": "Nueva Venta",
+    "addProduct": "Agregar Producto",
+    "cart": "Carrito",
+    "emptyCart": "El carrito está vacío",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "quantity": "Cantidad",
+    "confirmSale": "Confirmar Venta",
+    "saleCompleted": "Venta completada",
+    "saleCancelled": "Venta cancelada",
+    "noSales": "Aún no hay ventas",
+    "status": {
+      "completed": "Completada",
+      "cancelled": "Cancelada"
+    }
+  },
+  "consignments": {
+    "title": "Consignaciones",
+    "newConsignment": "Nueva Consignación",
+    "customerName": "Nombre del Cliente",
+    "status": {
+      "open": "Abierta",
+      "closed": "Cerrada"
+    },
+    "deliver": "Entregar",
+    "return": "Devolver",
+    "quantityDelivered": "Cant. Entregada",
+    "quantityReturned": "Cant. Devuelta",
+    "closeConsignment": "Cerrar Consignación",
+    "noConsignments": "Aún no hay consignaciones",
+    "validation": {
+      "customerNameRequired": "El nombre del cliente es obligatorio"
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma",
+    "languages": {
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "sync": "Sincronización",
+    "syncNow": "Sincronizar Ahora",
+    "lastSync": "Última sincronización",
+    "never": "Nunca",
+    "syncing": "Sincronizando...",
+    "syncSuccess": "Sincronización completada",
+    "syncError": "Error de sincronización",
+    "online": "En línea",
+    "offline": "Sin conexión"
   }
 }
