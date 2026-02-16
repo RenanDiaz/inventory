@@ -16,3 +16,24 @@ body {
 #root {
   min-height: 100dvh;
 }
+
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: white;
+  outline: none;
+}
+
+.input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.input:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}

@@ -360,34 +360,34 @@ Tareas:
 
 ## FASE 4 — App Shell y Navegación
 **Branch:** `feature/phase-4-app-shell`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Crear el layout principal, navegación inferior, routing y la estructura visual base.
 
 Tareas:
-- [ ] Instalar React Router
-- [ ] Crear layout principal con bottom navigation (Dashboard, Products, Sales, Consignments, Settings)
-- [ ] Implementar routing para todas las secciones
-- [ ] Crear componente FAB (Floating Action Button) para "Nueva Venta"
-- [ ] Diseño mobile-first con TailwindCSS
-- [ ] Crear componentes compartidos base: `PageHeader`, `EmptyState`, `LoadingSpinner`
-- [ ] Configurar Zustand store inicial (ej: UI state, sync status)
+- [x] Instalar React Router
+- [x] Crear layout principal con bottom navigation (Dashboard, Products, Sales, Consignments, Settings)
+- [x] Implementar routing para todas las secciones
+- [x] Crear componente FAB (Floating Action Button) para "Nueva Venta"
+- [x] Diseño mobile-first con TailwindCSS
+- [x] Crear componentes compartidos base: `PageHeader`, `EmptyState`, `LoadingSpinner`
+- [x] Configurar Zustand store inicial (ej: UI state, sync status)
 
 ⸻
 
 ## FASE 5 — Feature: Productos (CRUD + Stock)
 **Branch:** `feature/phase-5-products`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Implementar la funcionalidad completa de productos, incluyendo stock transaccional.
 
 Tareas:
-- [ ] Lista de productos con búsqueda (por nombre/SKU)
-- [ ] Formulario crear/editar producto (React Hook Form + Zod validation)
-- [ ] CRUD completo contra Dexie (crear, leer, actualizar, soft-delete)
-- [ ] Lógica transaccional de stock: actualizar `product.stock` + insertar `inventory_movement` dentro de una transacción Dexie
-- [ ] Indicador visual de stock bajo (`stock <= min_stock`)
-- [ ] Todas las strings usando `t()` de i18next
+- [x] Lista de productos con búsqueda (por nombre/SKU)
+- [x] Formulario crear/editar producto (React Hook Form + Zod validation)
+- [x] CRUD completo contra Dexie (crear, leer, actualizar, soft-delete)
+- [x] Lógica transaccional de stock: actualizar `product.stock` + insertar `inventory_movement` dentro de una transacción Dexie
+- [x] Indicador visual de stock bajo (`stock <= min_stock`)
+- [x] Todas las strings usando `t()` de i18next
 
 ⸻
 
@@ -477,8 +477,8 @@ Tareas:
 | 1 | Fundación del Proyecto | `feature/phase-1-foundation` | ✅ Completada |
 | 2 | Capa de Datos | `feature/phase-2-data-layer` | ✅ Completada |
 | 3 | Internacionalización | `feature/phase-3-i18n` | ✅ Completada |
-| 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ⬜ Pendiente |
-| 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ⬜ Pendiente |
+| 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ✅ Completada |
+| 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ✅ Completada |
 | 6 | Ventas | `feature/phase-6-sales` | ⬜ Pendiente |
 | 7 | Consignaciones | `feature/phase-7-consignments` | ⬜ Pendiente |
 | 8 | Dashboard | `feature/phase-8-dashboard` | ⬜ Pendiente |

@@ -51,6 +51,9 @@
     "searchPlaceholder": "Buscar por nombre o SKU...",
     "noProducts": "Aún no hay productos",
     "deleteConfirm": "¿Estás seguro de que deseas eliminar este producto?",
+    "adjustStock": "Ajustar Stock",
+    "stockEditHint": "El stock solo puede cambiarse mediante ajustes de stock.",
+    "status": "Estado",
     "validation": {
       "nameRequired": "El nombre del producto es obligatorio",
       "skuRequired": "El SKU es obligatorio",
@@ -65,6 +68,7 @@
     "movement": "Movimiento",
     "movements": "Movimientos",
     "type": {
+      "label": "Tipo",
       "IN": "Entrada",
       "OUT": "Salida",
       "ADJUSTMENT": "Ajuste",
