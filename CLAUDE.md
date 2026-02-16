@@ -299,3 +299,188 @@ Code must be clean, typed, and modular.
 Do not over-engineer.
 Do not introduce unnecessary abstractions.
 Keep it production-oriented but simple.
+
+⸻
+
+# 📋 PLAN DE TRABAJO POR FASES
+
+Cada fase se trabaja en su propia feature branch y se mergea a `master` al completarse.
+Las fases están ordenadas por dependencias: cada una construye sobre las anteriores.
+
+⸻
+
+## FASE 1 — Fundación del Proyecto
+**Branch:** `feature/phase-1-foundation`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Levantar el proyecto base con todas las herramientas configuradas.
+
+Tareas:
+- [ ] Inicializar proyecto Vite + React 18 + TypeScript
+- [ ] Configurar TailwindCSS
+- [ ] Crear la estructura de carpetas completa (`src/app/`, `src/core/`, `src/features/`, etc.)
+- [ ] Configurar ESLint + Prettier
+- [ ] Configurar vite-plugin-pwa (manifest, service worker, autoUpdate)
+- [ ] Crear archivo `.env.example` con variables de Supabase
+- [ ] Verificar que `npm run dev` y `npm run build` funcionan correctamente
+
+⸻
+
+## FASE 2 — Capa de Datos (Tipos + Dexie + Supabase)
+**Branch:** `feature/phase-2-data-layer`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Definir todos los tipos TypeScript, inicializar Dexie con el esquema completo y configurar el cliente Supabase.
+
+Tareas:
+- [ ] Definir interfaces TypeScript para todas las entidades (Product, InventoryMovement, Sale, SaleItem, Consignment, ConsignmentItem)
+- [ ] Incluir campos base en todas las entidades: `id`, `created_at`, `updated_at`, `synced`, `deleted`
+- [ ] Crear e inicializar Dexie DB con índices para todas las tablas
+- [ ] Configurar cliente Supabase (`src/core/supabase/client.ts`)
+- [ ] Crear archivo SQL de migración para Supabase (`supabase/migrations/`)
+- [ ] Incluir Row Level Security por `organization_id` en la migración
+
+⸻
+
+## FASE 3 — Internacionalización (i18n)
+**Branch:** `feature/phase-3-i18n`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Configurar i18next para que todas las fases siguientes lo usen desde el inicio.
+
+Tareas:
+- [ ] Instalar y configurar i18next + react-i18next
+- [ ] Crear archivos de traducción: `src/i18n/locales/en/common.json` y `es/common.json`
+- [ ] Implementar detección automática de idioma
+- [ ] Persistir idioma seleccionado en localStorage
+- [ ] Crear hook `useTranslation` wrapper si es necesario
+- [ ] Poblar traducciones base (navegación, botones comunes, labels genéricos)
+
+⸻
+
+## FASE 4 — App Shell y Navegación
+**Branch:** `feature/phase-4-app-shell`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Crear el layout principal, navegación inferior, routing y la estructura visual base.
+
+Tareas:
+- [ ] Instalar React Router
+- [ ] Crear layout principal con bottom navigation (Dashboard, Products, Sales, Consignments, Settings)
+- [ ] Implementar routing para todas las secciones
+- [ ] Crear componente FAB (Floating Action Button) para "Nueva Venta"
+- [ ] Diseño mobile-first con TailwindCSS
+- [ ] Crear componentes compartidos base: `PageHeader`, `EmptyState`, `LoadingSpinner`
+- [ ] Configurar Zustand store inicial (ej: UI state, sync status)
+
+⸻
+
+## FASE 5 — Feature: Productos (CRUD + Stock)
+**Branch:** `feature/phase-5-products`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Implementar la funcionalidad completa de productos, incluyendo stock transaccional.
+
+Tareas:
+- [ ] Lista de productos con búsqueda (por nombre/SKU)
+- [ ] Formulario crear/editar producto (React Hook Form + Zod validation)
+- [ ] CRUD completo contra Dexie (crear, leer, actualizar, soft-delete)
+- [ ] Lógica transaccional de stock: actualizar `product.stock` + insertar `inventory_movement` dentro de una transacción Dexie
+- [ ] Indicador visual de stock bajo (`stock <= min_stock`)
+- [ ] Todas las strings usando `t()` de i18next
+
+⸻
+
+## FASE 6 — Feature: Ventas
+**Branch:** `feature/phase-6-sales`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Implementar el flujo de creación de ventas con descuento de inventario.
+
+Tareas:
+- [ ] Pantalla de nueva venta: buscar y agregar productos
+- [ ] Carrito de venta con cantidades editables
+- [ ] Cálculo automático de subtotales y total
+- [ ] Al confirmar venta: crear `sale` + `sale_items` + descontar stock (transaccional)
+- [ ] Tipo de movimiento `OUT` en `inventory_movements`
+- [ ] Lista de ventas realizadas (historial básico)
+
+⸻
+
+## FASE 7 — Feature: Consignaciones
+**Branch:** `feature/phase-7-consignments`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Implementar consignaciones con entrega y devolución de producto.
+
+Tareas:
+- [ ] Crear consignación: nombre del cliente + selección de productos y cantidades
+- [ ] Al crear: descontar stock con movimiento tipo `CONSIGNMENT_OUT`
+- [ ] Pantalla de devolución: registrar cantidades devueltas
+- [ ] Al devolver: aumentar stock con movimiento tipo `CONSIGNMENT_RETURN`
+- [ ] Estado de consignación: `open` / `closed`
+- [ ] Lista de consignaciones con estado visible
+
+⸻
+
+## FASE 8 — Dashboard
+**Branch:** `feature/phase-8-dashboard`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Pantalla principal con métricas clave del negocio.
+
+Tareas:
+- [ ] Total de productos activos
+- [ ] Conteo de productos con stock bajo
+- [ ] Ventas recientes (últimos registros)
+- [ ] Resumen de consignaciones abiertas
+- [ ] Cards con diseño limpio y responsivo
+
+⸻
+
+## FASE 9 — Motor de Sincronización
+**Branch:** `feature/phase-9-sync-engine`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Implementar sincronización bidireccional con Supabase.
+
+Tareas:
+- [ ] **Push:** Para cada tabla, enviar registros con `synced = false` a Supabase (upsert), marcar `synced = true` on success
+- [ ] **Pull:** Para cada tabla, traer registros de Supabase donde `updated_at > lastSync`, merge local con last-write-wins
+- [ ] Almacenar `lastSync` en localStorage
+- [ ] Triggers: al iniciar app, al restaurar conexión (`online` event), cada 60 segundos
+- [ ] Indicador de estado de sincronización en la UI (Zustand store)
+- [ ] Manejo de errores: no bloquear la app si la sync falla
+
+⸻
+
+## FASE 10 — Settings, PWA Polish y Documentación
+**Branch:** `feature/phase-10-settings-polish`
+**Estado:** ⬜ Pendiente
+
+Objetivo: Pantalla de settings, pulir PWA y documentar el proyecto.
+
+Tareas:
+- [ ] Pantalla de Settings: toggle de idioma + botón de sync manual
+- [ ] Revisar y completar configuración PWA (offline fallback, runtime caching para Supabase)
+- [ ] Verificar instalabilidad del PWA
+- [ ] Escribir README.md con: arquitectura, lógica de sync, setup local, variables de entorno
+- [ ] Revisión final de traducciones en/es
+- [ ] Limpiar código, verificar build production sin errores
+
+⸻
+
+## RESUMEN DE FASES
+
+| # | Fase | Branch | Estado |
+|---|------|--------|--------|
+| 1 | Fundación del Proyecto | `feature/phase-1-foundation` | ⬜ Pendiente |
+| 2 | Capa de Datos | `feature/phase-2-data-layer` | ⬜ Pendiente |
+| 3 | Internacionalización | `feature/phase-3-i18n` | ⬜ Pendiente |
+| 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ⬜ Pendiente |
+| 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ⬜ Pendiente |
+| 6 | Ventas | `feature/phase-6-sales` | ⬜ Pendiente |
+| 7 | Consignaciones | `feature/phase-7-consignments` | ⬜ Pendiente |
+| 8 | Dashboard | `feature/phase-8-dashboard` | ⬜ Pendiente |
+| 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ⬜ Pendiente |
+| 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ⬜ Pendiente |
