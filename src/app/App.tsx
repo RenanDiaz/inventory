@@ -1,15 +1,26 @@
-import { useTranslation } from 'react-i18next'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Layout } from './Layout'
+import { DashboardPage } from '@/features/dashboard/DashboardPage'
+import { ProductsPage } from '@/features/products/ProductsPage'
+import { SalesPage } from '@/features/sales/SalesPage'
+import { NewSalePage } from '@/features/sales/NewSalePage'
+import { ConsignmentsPage } from '@/features/consignments/ConsignmentsPage'
+import { SettingsPage } from '@/features/settings/SettingsPage'
 
 function App() {
-  const { t } = useTranslation()
-
   return (
-    <div className="min-h-dvh bg-gray-50 flex items-center justify-center">
-      <div className="text-center p-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('app.name')}</h1>
-        <p className="text-gray-500">Phase 3 - i18n ready</p>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/sales" element={<SalesPage />} />
+          <Route path="/sales/new" element={<NewSalePage />} />
+          <Route path="/consignments" element={<ConsignmentsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
