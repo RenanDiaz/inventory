@@ -311,50 +311,50 @@ Las fases están ordenadas por dependencias: cada una construye sobre las anteri
 
 ## FASE 1 — Fundación del Proyecto
 **Branch:** `feature/phase-1-foundation`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Levantar el proyecto base con todas las herramientas configuradas.
 
 Tareas:
-- [ ] Inicializar proyecto Vite + React 18 + TypeScript
-- [ ] Configurar TailwindCSS
-- [ ] Crear la estructura de carpetas completa (`src/app/`, `src/core/`, `src/features/`, etc.)
-- [ ] Configurar ESLint + Prettier
-- [ ] Configurar vite-plugin-pwa (manifest, service worker, autoUpdate)
-- [ ] Crear archivo `.env.example` con variables de Supabase
-- [ ] Verificar que `npm run dev` y `npm run build` funcionan correctamente
+- [x] Inicializar proyecto Vite + React 18 + TypeScript
+- [x] Configurar TailwindCSS
+- [x] Crear la estructura de carpetas completa (`src/app/`, `src/core/`, `src/features/`, etc.)
+- [x] Configurar ESLint + Prettier
+- [x] Configurar vite-plugin-pwa (manifest, service worker, autoUpdate)
+- [x] Crear archivo `.env.example` con variables de Supabase
+- [x] Verificar que `npm run dev` y `npm run build` funcionan correctamente
 
 ⸻
 
 ## FASE 2 — Capa de Datos (Tipos + Dexie + Supabase)
 **Branch:** `feature/phase-2-data-layer`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Definir todos los tipos TypeScript, inicializar Dexie con el esquema completo y configurar el cliente Supabase.
 
 Tareas:
-- [ ] Definir interfaces TypeScript para todas las entidades (Product, InventoryMovement, Sale, SaleItem, Consignment, ConsignmentItem)
-- [ ] Incluir campos base en todas las entidades: `id`, `created_at`, `updated_at`, `synced`, `deleted`
-- [ ] Crear e inicializar Dexie DB con índices para todas las tablas
-- [ ] Configurar cliente Supabase (`src/core/supabase/client.ts`)
-- [ ] Crear archivo SQL de migración para Supabase (`supabase/migrations/`)
-- [ ] Incluir Row Level Security por `organization_id` en la migración
+- [x] Definir interfaces TypeScript para todas las entidades (Product, InventoryMovement, Sale, SaleItem, Consignment, ConsignmentItem)
+- [x] Incluir campos base en todas las entidades: `id`, `created_at`, `updated_at`, `synced`, `deleted`
+- [x] Crear e inicializar Dexie DB con índices para todas las tablas
+- [x] Configurar cliente Supabase (`src/core/supabase/client.ts`)
+- [x] Crear archivo SQL de migración para Supabase (`supabase/migrations/`)
+- [x] Incluir Row Level Security por `organization_id` en la migración
 
 ⸻
 
 ## FASE 3 — Internacionalización (i18n)
 **Branch:** `feature/phase-3-i18n`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Configurar i18next para que todas las fases siguientes lo usen desde el inicio.
 
 Tareas:
-- [ ] Instalar y configurar i18next + react-i18next
-- [ ] Crear archivos de traducción: `src/i18n/locales/en/common.json` y `es/common.json`
-- [ ] Implementar detección automática de idioma
-- [ ] Persistir idioma seleccionado en localStorage
-- [ ] Crear hook `useTranslation` wrapper si es necesario
-- [ ] Poblar traducciones base (navegación, botones comunes, labels genéricos)
+- [x] Instalar y configurar i18next + react-i18next
+- [x] Crear archivos de traducción: `src/i18n/locales/en/common.json` y `es/common.json`
+- [x] Implementar detección automática de idioma
+- [x] Persistir idioma seleccionado en localStorage
+- [x] Crear hook `useTranslation` wrapper si es necesario
+- [x] Poblar traducciones base (navegación, botones comunes, labels genéricos)
 
 ⸻
 
@@ -474,9 +474,9 @@ Tareas:
 
 | # | Fase | Branch | Estado |
 |---|------|--------|--------|
-| 1 | Fundación del Proyecto | `feature/phase-1-foundation` | ⬜ Pendiente |
-| 2 | Capa de Datos | `feature/phase-2-data-layer` | ⬜ Pendiente |
-| 3 | Internacionalización | `feature/phase-3-i18n` | ⬜ Pendiente |
+| 1 | Fundación del Proyecto | `feature/phase-1-foundation` | ✅ Completada |
+| 2 | Capa de Datos | `feature/phase-2-data-layer` | ✅ Completada |
+| 3 | Internacionalización | `feature/phase-3-i18n` | ✅ Completada |
 | 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ⬜ Pendiente |
 | 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ⬜ Pendiente |
 | 6 | Ventas | `feature/phase-6-sales` | ⬜ Pendiente |
