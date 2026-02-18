@@ -8,6 +8,8 @@ import { SalesPage } from '@/features/sales/SalesPage'
 import { NewSalePage } from '@/features/sales/NewSalePage'
 import { SaleDetailPage } from '@/features/sales/SaleDetailPage'
 import { ConsignmentsPage } from '@/features/consignments/ConsignmentsPage'
+import { NewConsignmentPage } from '@/features/consignments/NewConsignmentPage'
+import { ConsignmentDetailPage } from '@/features/consignments/ConsignmentDetailPage'
 import { SettingsPage } from '@/features/settings/SettingsPage'
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/sales/new" element={<NewSalePage />} />
           <Route path="/sales/:id" element={<SaleDetailPage />} />
           <Route path="/consignments" element={<ConsignmentsPage />} />
+          <Route path="/consignments/new" element={<NewConsignmentPage />} />
+          <Route path="/consignments/:id" element={<ConsignmentDetailPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>

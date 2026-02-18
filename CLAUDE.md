@@ -409,17 +409,17 @@ Tareas:
 
 ## FASE 7 — Feature: Consignaciones
 **Branch:** `feature/phase-7-consignments`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Implementar consignaciones con entrega y devolución de producto.
 
 Tareas:
-- [ ] Crear consignación: nombre del cliente + selección de productos y cantidades
-- [ ] Al crear: descontar stock con movimiento tipo `CONSIGNMENT_OUT`
-- [ ] Pantalla de devolución: registrar cantidades devueltas
-- [ ] Al devolver: aumentar stock con movimiento tipo `CONSIGNMENT_RETURN`
-- [ ] Estado de consignación: `open` / `closed`
-- [ ] Lista de consignaciones con estado visible
+- [x] Crear consignación: nombre del cliente + selección de productos y cantidades
+- [x] Al crear: descontar stock con movimiento tipo `CONSIGNMENT_OUT`
+- [x] Pantalla de devolución: registrar cantidades devueltas
+- [x] Al devolver: aumentar stock con movimiento tipo `CONSIGNMENT_RETURN`
+- [x] Estado de consignación: `open` / `closed`
+- [x] Lista de consignaciones con estado visible
 
 ⸻
 
@@ -480,7 +480,7 @@ Tareas:
 | 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ✅ Completada |
 | 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ✅ Completada |
 | 6 | Ventas | `feature/phase-6-sales` | ✅ Completada |
-| 7 | Consignaciones | `feature/phase-7-consignments` | ⬜ Pendiente |
+| 7 | Consignaciones | `feature/phase-7-consignments` | ✅ Completada |
 | 8 | Dashboard | `feature/phase-8-dashboard` | ⬜ Pendiente |
 | 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ⬜ Pendiente |
 | 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ⬜ Pendiente |
