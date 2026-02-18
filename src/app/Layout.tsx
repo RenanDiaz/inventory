@@ -4,7 +4,7 @@ import { BottomNav } from '@/components/BottomNav'
 import { FloatingActionButton } from '@/components/FloatingActionButton'
 import { useUIStore } from '@/stores/uiStore'
 
-const pagesWithFAB = ['/', '/products', '/dashboard']
+const pagesWithFAB = ['/', '/products', '/sales', '/dashboard']
 
 export function Layout() {
   const location = useLocation()

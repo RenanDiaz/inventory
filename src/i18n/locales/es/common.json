@@ -91,6 +91,12 @@
     "saleCompleted": "Venta completada",
     "saleCancelled": "Venta cancelada",
     "noSales": "Aún no hay ventas",
+    "saleDetail": "Detalle de Venta",
+    "items": "Artículos",
+    "date": "Fecha",
+    "searchProducts": "Buscar productos...",
+    "insufficientStock": "Stock insuficiente",
+    "inCart": "En carrito",
     "status": {
       "completed": "Completada",
       "cancelled": "Cancelada"
