@@ -6,6 +6,7 @@ import { ProductDetailPage } from '@/features/products/ProductDetailPage'
 import { ProductFormPage } from '@/features/products/ProductFormPage'
 import { SalesPage } from '@/features/sales/SalesPage'
 import { NewSalePage } from '@/features/sales/NewSalePage'
+import { SaleDetailPage } from '@/features/sales/SaleDetailPage'
 import { ConsignmentsPage } from '@/features/consignments/ConsignmentsPage'
 import { SettingsPage } from '@/features/settings/SettingsPage'
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/products/:id/edit" element={<ProductFormPage />} />
           <Route path="/sales" element={<SalesPage />} />
           <Route path="/sales/new" element={<NewSalePage />} />
+          <Route path="/sales/:id" element={<SaleDetailPage />} />
           <Route path="/consignments" element={<ConsignmentsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>

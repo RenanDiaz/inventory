@@ -91,6 +91,12 @@
     "saleCompleted": "Sale completed",
     "saleCancelled": "Sale cancelled",
     "noSales": "No sales yet",
+    "saleDetail": "Sale Detail",
+    "items": "Items",
+    "date": "Date",
+    "searchProducts": "Search products...",
+    "insufficientStock": "Insufficient stock",
+    "inCart": "In cart",
     "status": {
       "completed": "Completed",
       "cancelled": "Cancelled"

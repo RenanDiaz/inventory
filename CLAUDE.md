@@ -393,17 +393,17 @@ Tareas:
 
 ## FASE 6 — Feature: Ventas
 **Branch:** `feature/phase-6-sales`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Implementar el flujo de creación de ventas con descuento de inventario.
 
 Tareas:
-- [ ] Pantalla de nueva venta: buscar y agregar productos
-- [ ] Carrito de venta con cantidades editables
-- [ ] Cálculo automático de subtotales y total
-- [ ] Al confirmar venta: crear `sale` + `sale_items` + descontar stock (transaccional)
-- [ ] Tipo de movimiento `OUT` en `inventory_movements`
-- [ ] Lista de ventas realizadas (historial básico)
+- [x] Pantalla de nueva venta: buscar y agregar productos
+- [x] Carrito de venta con cantidades editables
+- [x] Cálculo automático de subtotales y total
+- [x] Al confirmar venta: crear `sale` + `sale_items` + descontar stock (transaccional)
+- [x] Tipo de movimiento `OUT` en `inventory_movements`
+- [x] Lista de ventas realizadas (historial básico)
 
 ⸻
 
@@ -479,7 +479,7 @@ Tareas:
 | 3 | Internacionalización | `feature/phase-3-i18n` | ✅ Completada |
 | 4 | App Shell y Navegación | `feature/phase-4-app-shell` | ✅ Completada |
 | 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ✅ Completada |
-| 6 | Ventas | `feature/phase-6-sales` | ⬜ Pendiente |
+| 6 | Ventas | `feature/phase-6-sales` | ✅ Completada |
 | 7 | Consignaciones | `feature/phase-7-consignments` | ⬜ Pendiente |
 | 8 | Dashboard | `feature/phase-8-dashboard` | ⬜ Pendiente |
 | 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ⬜ Pendiente |
