@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { getProducts } from './productService'
 import type { Product } from '@/core/db/types'
+import { formatCurrency } from '@/utils/currency'
 
 export function ProductsPage() {
   const { t } = useTranslation()
@@ -91,7 +92,7 @@ export function ProductsPage() {
 
                 <div className="text-right shrink-0">
                   <p className="text-sm font-medium text-gray-900">
-                    ${product.price.toFixed(2)}
+                    {formatCurrency(product.price)}
                   </p>
                   <p
                     className={`text-xs mt-0.5 ${

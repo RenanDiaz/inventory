@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { getProducts } from '@/features/products/productService'
 import { createConsignment, type DeliveryItem } from './consignmentService'
 import type { Product } from '@/core/db/types'
+import { formatCurrency } from '@/utils/currency'
 
 export function NewConsignmentPage() {
   const { t } = useTranslation()
@@ -147,7 +148,7 @@ export function NewConsignmentPage() {
                           </div>
                           <div className="text-right shrink-0">
                             <p className="text-sm font-medium text-gray-900">
-                              ${product.price.toFixed(2)}
+                              {formatCurrency(product.price)}
                             </p>
                             {inList && (
                               <p className="text-xs text-blue-600 mt-0.5">
@@ -228,7 +229,7 @@ export function NewConsignmentPage() {
                           {item.product.name}
                         </p>
                         <p className="text-xs text-gray-500 mt-0.5">
-                          ${item.product.price.toFixed(2)} &times; {item.quantity}
+                          {formatCurrency(item.product.price)} &times; {item.quantity}
                         </p>
                         {insufficientStock && (
                           <p className="text-xs text-red-600 mt-0.5">
@@ -238,7 +239,7 @@ export function NewConsignmentPage() {
                         )}
                       </div>
                       <p className="text-sm font-medium text-gray-900 shrink-0">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        {formatCurrency(item.product.price * item.quantity)}
                       </p>
                     </div>
 

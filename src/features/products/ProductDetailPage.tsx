@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/PageHeader'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { getProduct, deleteProduct, adjustStock } from './productService'
 import type { Product, InventoryMovementType } from '@/core/db/types'
+import { formatCurrency } from '@/utils/currency'
 
 export function ProductDetailPage() {
   const { t } = useTranslation()
@@ -68,8 +69,8 @@ export function ProductDetailPage() {
       <div className="px-4 py-4 space-y-4">
         <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
           <DetailRow label={t('products.sku')} value={product.sku} />
-          <DetailRow label={t('products.price')} value={`$${product.price.toFixed(2)}`} />
-          <DetailRow label={t('products.cost')} value={`$${product.cost.toFixed(2)}`} />
+          <DetailRow label={t('products.price')} value={formatCurrency(product.price)} />
+          <DetailRow label={t('products.cost')} value={formatCurrency(product.cost)} />
           <DetailRow
             label={t('products.stock')}
             value={String(product.stock)}
