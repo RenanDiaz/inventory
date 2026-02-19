@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { BottomNav } from '@/components/BottomNav'
 import { FloatingActionButton } from '@/components/FloatingActionButton'
 import { useUIStore } from '@/stores/uiStore'
+import { useSync } from '@/hooks/useSync'
 
 const pagesWithFAB = ['/', '/products', '/sales', '/dashboard']
 
@@ -10,6 +11,9 @@ export function Layout() {
   const location = useLocation()
   const setIsOnline = useUIStore((s) => s.setIsOnline)
   const showFAB = pagesWithFAB.includes(location.pathname)
+
+  // Start sync engine (initial sync, 60s interval, online reconnection)
+  useSync()
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true)
