@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/PageHeader'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { getSaleWithItems, type SaleWithItems } from './salesService'
+import { formatCurrency } from '@/utils/currency'
 
 export function SaleDetailPage() {
   const { t } = useTranslation()
@@ -62,7 +63,7 @@ export function SaleDetailPage() {
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-sm text-gray-500">{t('sales.total')}</span>
             <span className="text-lg font-bold text-gray-900">
-              ${sale.total.toFixed(2)}
+              {formatCurrency(sale.total)}
             </span>
           </div>
         </div>
@@ -77,11 +78,11 @@ export function SaleDetailPage() {
                   {item.productName}
                 </p>
                 <p className="text-xs text-gray-500 mt-0.5">
-                  ${item.unit_price.toFixed(2)} &times; {item.quantity}
+                  {formatCurrency(item.unit_price)} &times; {item.quantity}
                 </p>
               </div>
               <p className="text-sm font-medium text-gray-900 shrink-0">
-                ${item.subtotal.toFixed(2)}
+                {formatCurrency(item.subtotal)}
               </p>
             </div>
           ))}

@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { getProducts } from '@/features/products/productService'
 import { createSale, type CartItem } from './salesService'
 import type { Product } from '@/core/db/types'
+import { formatCurrency } from '@/utils/currency'
 
 export function NewSalePage() {
   const { t } = useTranslation()
@@ -144,7 +145,7 @@ export function NewSalePage() {
                           </div>
                           <div className="text-right shrink-0">
                             <p className="text-sm font-medium text-gray-900">
-                              ${product.price.toFixed(2)}
+                              {formatCurrency(product.price)}
                             </p>
                             {inCart && (
                               <p className="text-xs text-blue-600 mt-0.5">
@@ -202,7 +203,7 @@ export function NewSalePage() {
                           {item.product.name}
                         </p>
                         <p className="text-xs text-gray-500 mt-0.5">
-                          ${item.product.price.toFixed(2)} &times;{' '}
+                          {formatCurrency(item.product.price)} &times;{' '}
                           {item.quantity}
                         </p>
                         {insufficientStock && (
@@ -213,7 +214,7 @@ export function NewSalePage() {
                         )}
                       </div>
                       <p className="text-sm font-medium text-gray-900 shrink-0">
-                        ${subtotal.toFixed(2)}
+                        {formatCurrency(subtotal)}
                       </p>
                     </div>
 
@@ -277,7 +278,7 @@ export function NewSalePage() {
                 {t('sales.total')}
               </span>
               <span className="text-lg font-bold text-gray-900">
-                ${total.toFixed(2)}
+                {formatCurrency(total)}
               </span>
             </div>
 

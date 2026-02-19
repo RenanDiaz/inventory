@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/PageHeader'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { getDashboardMetrics, type DashboardMetrics } from './dashboardService'
+import { formatCurrency } from '@/utils/currency'
 
 export function DashboardPage() {
   const { t } = useTranslation()
@@ -140,7 +141,7 @@ export function DashboardPage() {
                     className="w-full px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 active:bg-gray-100 text-left"
                   >
                     <div>
-                      <p className="text-sm font-medium text-gray-900">${sale.total.toFixed(2)}</p>
+                      <p className="text-sm font-medium text-gray-900">{formatCurrency(sale.total)}</p>
                       <p className="text-xs text-gray-500">{formatDate(sale.created_at)}</p>
                     </div>
                     <span

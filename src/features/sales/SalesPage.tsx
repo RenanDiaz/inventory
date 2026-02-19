@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { getSales } from './salesService'
 import type { Sale } from '@/core/db/types'
+import { formatCurrency } from '@/utils/currency'
 
 export function SalesPage() {
   const { t } = useTranslation()
@@ -76,7 +77,7 @@ export function SalesPage() {
               >
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900">
-                    ${sale.total.toFixed(2)}
+                    {formatCurrency(sale.total)}
                   </p>
                   <p className="text-xs text-gray-500 mt-0.5">
                     {formatDate(sale.created_at)}

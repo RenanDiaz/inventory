@@ -456,17 +456,17 @@ Tareas:
 
 ## FASE 10 — Settings, PWA Polish y Documentación
 **Branch:** `feature/phase-10-settings-polish`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Pantalla de settings, pulir PWA y documentar el proyecto.
 
 Tareas:
-- [ ] Pantalla de Settings: toggle de idioma + botón de sync manual
-- [ ] Revisar y completar configuración PWA (offline fallback, runtime caching para Supabase)
-- [ ] Verificar instalabilidad del PWA
-- [ ] Escribir README.md con: arquitectura, lógica de sync, setup local, variables de entorno
-- [ ] Revisión final de traducciones en/es
-- [ ] Limpiar código, verificar build production sin errores
+- [x] Pantalla de Settings: toggle de idioma + botón de sync manual
+- [x] Revisar y completar configuración PWA (offline fallback, runtime caching para Supabase)
+- [x] Verificar instalabilidad del PWA
+- [x] Escribir README.md con: arquitectura, lógica de sync, setup local, variables de entorno
+- [x] Revisión final de traducciones en/es
+- [x] Limpiar código, verificar build production sin errores
 
 ⸻
 
@@ -483,4 +483,4 @@ Tareas:
 | 7 | Consignaciones | `feature/phase-7-consignments` | ✅ Completada |
 | 8 | Dashboard | `feature/phase-8-dashboard` | ✅ Completada |
 | 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ✅ Completada |
-| 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ⬜ Pendiente |
+| 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ✅ Completada |

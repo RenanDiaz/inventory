@@ -9,6 +9,7 @@ import {
   closeConsignment,
   type ConsignmentWithItems,
 } from './consignmentService'
+import { formatCurrency } from '@/utils/currency'
 
 export function ConsignmentDetailPage() {
   const { t } = useTranslation()
@@ -158,7 +159,7 @@ export function ConsignmentDetailPage() {
                       {item.productName}
                     </p>
                     <p className="text-xs text-gray-500 mt-0.5">
-                      ${item.unit_price.toFixed(2)}
+                      {formatCurrency(item.unit_price)}
                     </p>
                   </div>
                 </div>
