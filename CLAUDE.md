@@ -425,16 +425,16 @@ Tareas:
 
 ## FASE 8 — Dashboard
 **Branch:** `feature/phase-8-dashboard`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Pantalla principal con métricas clave del negocio.
 
 Tareas:
-- [ ] Total de productos activos
-- [ ] Conteo de productos con stock bajo
-- [ ] Ventas recientes (últimos registros)
-- [ ] Resumen de consignaciones abiertas
-- [ ] Cards con diseño limpio y responsivo
+- [x] Total de productos activos
+- [x] Conteo de productos con stock bajo
+- [x] Ventas recientes (últimos registros)
+- [x] Resumen de consignaciones abiertas
+- [x] Cards con diseño limpio y responsivo
 
 ⸻
 
@@ -481,6 +481,6 @@ Tareas:
 | 5 | Productos (CRUD + Stock) | `feature/phase-5-products` | ✅ Completada |
 | 6 | Ventas | `feature/phase-6-sales` | ✅ Completada |
 | 7 | Consignaciones | `feature/phase-7-consignments` | ✅ Completada |
-| 8 | Dashboard | `feature/phase-8-dashboard` | ⬜ Pendiente |
+| 8 | Dashboard | `feature/phase-8-dashboard` | ✅ Completada |
 | 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ⬜ Pendiente |
 | 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ⬜ Pendiente |

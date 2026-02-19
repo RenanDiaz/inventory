@@ -31,8 +31,11 @@
     "title": "Dashboard",
     "totalProducts": "Total Products",
     "lowStock": "Low Stock",
+    "lowStockProducts": "Low Stock Products",
     "recentSales": "Recent Sales",
-    "openConsignments": "Open Consignments"
+    "recentSalesTitle": "Recent Sales",
+    "openConsignments": "Open Consignments",
+    "openConsignmentsTitle": "Open Consignments"
   },
   "products": {
     "title": "Products",

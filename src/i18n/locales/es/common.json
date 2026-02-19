@@ -31,8 +31,11 @@
     "title": "Inicio",
     "totalProducts": "Total de Productos",
     "lowStock": "Stock Bajo",
+    "lowStockProducts": "Productos con Stock Bajo",
     "recentSales": "Ventas Recientes",
-    "openConsignments": "Consignaciones Abiertas"
+    "recentSalesTitle": "Ventas Recientes",
+    "openConsignments": "Consignaciones Abiertas",
+    "openConsignmentsTitle": "Consignaciones Abiertas"
   },
   "products": {
     "title": "Productos",
