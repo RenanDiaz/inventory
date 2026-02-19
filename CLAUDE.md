@@ -440,17 +440,17 @@ Tareas:
 
 ## FASE 9 — Motor de Sincronización
 **Branch:** `feature/phase-9-sync-engine`
-**Estado:** ⬜ Pendiente
+**Estado:** ✅ Completada
 
 Objetivo: Implementar sincronización bidireccional con Supabase.
 
 Tareas:
-- [ ] **Push:** Para cada tabla, enviar registros con `synced = false` a Supabase (upsert), marcar `synced = true` on success
-- [ ] **Pull:** Para cada tabla, traer registros de Supabase donde `updated_at > lastSync`, merge local con last-write-wins
-- [ ] Almacenar `lastSync` en localStorage
-- [ ] Triggers: al iniciar app, al restaurar conexión (`online` event), cada 60 segundos
-- [ ] Indicador de estado de sincronización en la UI (Zustand store)
-- [ ] Manejo de errores: no bloquear la app si la sync falla
+- [x] **Push:** Para cada tabla, enviar registros con `synced = false` a Supabase (upsert), marcar `synced = true` on success
+- [x] **Pull:** Para cada tabla, traer registros de Supabase donde `updated_at > lastSync`, merge local con last-write-wins
+- [x] Almacenar `lastSync` en localStorage
+- [x] Triggers: al iniciar app, al restaurar conexión (`online` event), cada 60 segundos
+- [x] Indicador de estado de sincronización en la UI (Zustand store)
+- [x] Manejo de errores: no bloquear la app si la sync falla
 
 ⸻
 
@@ -482,5 +482,5 @@ Tareas:
 | 6 | Ventas | `feature/phase-6-sales` | ✅ Completada |
 | 7 | Consignaciones | `feature/phase-7-consignments` | ✅ Completada |
 | 8 | Dashboard | `feature/phase-8-dashboard` | ✅ Completada |
-| 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ⬜ Pendiente |
+| 9 | Motor de Sincronización | `feature/phase-9-sync-engine` | ✅ Completada |
 | 10 | Settings, PWA y Docs | `feature/phase-10-settings-polish` | ⬜ Pendiente |

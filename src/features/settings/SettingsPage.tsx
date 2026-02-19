@@ -1,13 +1,23 @@
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/PageHeader'
 import { useUIStore } from '@/stores/uiStore'
+import { runSync } from '@/core/sync'
 
 export function SettingsPage() {
   const { t, i18n } = useTranslation()
-  const { isOnline, syncStatus } = useUIStore()
+  const { isOnline, syncStatus, lastSyncTime } = useUIStore()
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
+  }
+
+  const handleSync = () => {
+    runSync()
+  }
+
+  const formatLastSync = (time: string | null): string => {
+    if (!time) return t('settings.never')
+    return new Date(time).toLocaleString(i18n.language)
   }
 
   return (
@@ -52,14 +62,21 @@ export function SettingsPage() {
               className={`w-2.5 h-2.5 rounded-full ${isOnline ? 'bg-green-500' : 'bg-gray-400'}`}
             />
           </div>
+          {syncStatus === 'success' && (
+            <p className="text-xs text-green-600 mb-2">{t('settings.syncSuccess')}</p>
+          )}
+          {syncStatus === 'error' && (
+            <p className="text-xs text-red-600 mb-2">{t('settings.syncError')}</p>
+          )}
           <button
+            onClick={handleSync}
             disabled={syncStatus === 'syncing'}
             className="w-full py-2 px-3 rounded-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 transition-colors"
           >
             {syncStatus === 'syncing' ? t('settings.syncing') : t('settings.syncNow')}
           </button>
           <p className="text-xs text-gray-400 mt-2">
-            {t('settings.lastSync')}: {t('settings.never')}
+            {t('settings.lastSync')}: {formatLastSync(lastSyncTime)}
           </p>
         </section>
       </div>
