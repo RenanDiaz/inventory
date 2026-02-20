@@ -127,8 +127,33 @@
       "customerNameRequired": "El nombre del cliente es obligatorio"
     }
   },
+  "auth": {
+    "signInTitle": "Inicia sesión en tu cuenta",
+    "createAccount": "Crear una cuenta nueva",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Tu contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Repite tu contraseña",
+    "login": "Iniciar Sesión",
+    "register": "Crear Cuenta",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
+    "noAccount": "¿No tienes cuenta? Crea una",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+    "unknownError": "Ocurrió un error inesperado",
+    "registrationSuccess": "¡Cuenta creada!",
+    "checkEmail": "Revisa tu correo electrónico para confirmar tu cuenta antes de iniciar sesión.",
+    "backToLogin": "Volver a Iniciar Sesión",
+    "continueWithGoogle": "Continuar con Google",
+    "continueWithEmail": "Continuar con correo",
+    "or": "o"
+  },
   "settings": {
     "title": "Ajustes",
+    "account": "Cuenta",
+    "logout": "Cerrar Sesión",
     "language": "Idioma",
     "languages": {
       "en": "Inglés",

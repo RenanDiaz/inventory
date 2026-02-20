@@ -127,8 +127,33 @@
       "customerNameRequired": "Customer name is required"
     }
   },
+  "auth": {
+    "signInTitle": "Sign in to your account",
+    "createAccount": "Create a new account",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat your password",
+    "login": "Sign In",
+    "register": "Create Account",
+    "haveAccount": "Already have an account? Sign in",
+    "noAccount": "Don't have an account? Create one",
+    "passwordMismatch": "Passwords do not match",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "unknownError": "An unexpected error occurred",
+    "registrationSuccess": "Account created!",
+    "checkEmail": "Check your email to confirm your account before signing in.",
+    "backToLogin": "Back to Sign In",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithEmail": "Continue with email",
+    "or": "or"
+  },
   "settings": {
     "title": "Settings",
+    "account": "Account",
+    "logout": "Sign Out",
     "language": "Language",
     "languages": {
       "en": "English",

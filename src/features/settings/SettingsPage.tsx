@@ -1,11 +1,18 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/PageHeader'
 import { useUIStore } from '@/stores/uiStore'
+import { useAuthStore } from '@/stores/authStore'
 import { runSync } from '@/core/sync'
+import { signOut } from '@/core/supabase/auth'
 
 export function SettingsPage() {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
   const { isOnline, syncStatus, lastSyncTime } = useUIStore()
+  const user = useAuthStore((s) => s.user)
+  const [loggingOut, setLoggingOut] = useState(false)
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -13,6 +20,16 @@ export function SettingsPage() {
 
   const handleSync = () => {
     runSync()
+  }
+
+  const handleLogout = async () => {
+    setLoggingOut(true)
+    try {
+      await signOut()
+      navigate('/login', { replace: true })
+    } catch {
+      setLoggingOut(false)
+    }
   }
 
   const formatLastSync = (time: string | null): string => {
@@ -24,6 +41,19 @@ export function SettingsPage() {
     <div>
       <PageHeader title={t('settings.title')} />
       <div className="p-4 space-y-6">
+        {/* Account */}
+        <section className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+          <h2 className="text-sm font-medium text-gray-900 mb-3">{t('settings.account')}</h2>
+          <p className="text-sm text-gray-600 mb-3">{user?.email}</p>
+          <button
+            onClick={handleLogout}
+            disabled={loggingOut}
+            className="w-full py-2 px-3 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 disabled:opacity-50 transition-colors"
+          >
+            {loggingOut ? t('common.loading') : t('settings.logout')}
+          </button>
+        </section>
+
         {/* Language */}
         <section className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
           <h2 className="text-sm font-medium text-gray-900 mb-3">{t('settings.language')}</h2>
