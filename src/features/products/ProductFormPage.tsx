@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { PageHeader } from '@/components/PageHeader'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { useAuthStore } from '@/stores/authStore'
 import { getProduct, createProduct, updateProduct } from './productService'
 
 interface ProductFormData {
@@ -38,6 +39,7 @@ export function ProductFormPage() {
   const { id } = useParams<{ id: string }>()
   const isEdit = Boolean(id)
   const [loading, setLoading] = useState(isEdit)
+  const organizationId = useAuthStore((s) => s.organizationId)
   const schema = useProductSchema()
 
   const {
@@ -84,7 +86,7 @@ export function ProductFormPage() {
     } else {
       await createProduct({
         ...data,
-        organization_id: 'default',
+        organization_id: organizationId!,
       })
     }
     navigate('/products')

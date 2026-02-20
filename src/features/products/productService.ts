@@ -1,6 +1,7 @@
 import { db } from '@/core/db'
 import { createBaseEntity, markAsUpdated, markAsDeleted } from '@/core/db/helpers'
 import type { Product, InventoryMovement, InventoryMovementType } from '@/core/db/types'
+import { useAuthStore } from '@/stores/authStore'
 
 export interface CreateProductInput {
   organization_id: string
@@ -78,7 +79,7 @@ export async function createProduct(input: CreateProductInput): Promise<Product>
         unit_price: product.cost,
         reference_type: 'initial_stock',
         reference_id: null,
-        created_by: null,
+        created_by: useAuthStore.getState().user?.id ?? null,
       }
       await db.inventory_movements.add(movement)
     }
@@ -148,7 +149,7 @@ export async function adjustStock(
       unit_price: unitPrice,
       reference_type: referenceType ?? null,
       reference_id: referenceId ?? null,
-      created_by: null,
+      created_by: useAuthStore.getState().user?.id ?? null,
     }
     await db.inventory_movements.add(movement)
   })

@@ -2,6 +2,7 @@ import { db } from '@/core/db'
 import { createBaseEntity, markAsUpdated } from '@/core/db/helpers'
 import type { Sale, SaleItem, Product } from '@/core/db/types'
 import { adjustStock } from '@/features/products/productService'
+import { useAuthStore } from '@/stores/authStore'
 
 export interface CartItem {
   product: Product
@@ -26,7 +27,7 @@ export async function createSale(cartItems: CartItem[]): Promise<Sale> {
     ...saleBase,
     total,
     status: 'completed',
-    created_by: null,
+    created_by: useAuthStore.getState().user?.id ?? null,
   }
 
   await db.transaction(
